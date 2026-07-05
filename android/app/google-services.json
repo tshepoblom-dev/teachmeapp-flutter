@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "941977571389",
+    "project_id": "teachme-app-d5474",
+    "storage_bucket": "teachme-app-d5474.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941977571389:android:6d7f5a4f04001a5b97da54",
+        "android_client_info": {
+          "package_name": "com.lumko.teachme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg34is0VWakxYug3vgqpoqENz2rtk87q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941977571389:android:67bd8e8de16e349797da54",
+        "android_client_info": {
+          "package_name": "com.teachmeapp.teachmeapp_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg34is0VWakxYug3vgqpoqENz2rtk87q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
