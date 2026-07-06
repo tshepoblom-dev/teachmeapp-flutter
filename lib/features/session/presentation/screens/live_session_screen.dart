@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/router/route_paths.dart';
+import '../../../../core/theme/app_radius.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../auth/domain/auth_state.dart';
 import '../../../auth/domain/user.dart';
@@ -223,7 +224,7 @@ class _LiveSessionScreenState extends ConsumerState<LiveSessionScreen> {
                         width: 120,
                         height: 160,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: _localVideo(),
                         ),
                       ),

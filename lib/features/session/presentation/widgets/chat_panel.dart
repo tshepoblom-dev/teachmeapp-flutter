@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radius.dart';
 import '../../domain/chat_message.dart';
 import '../providers/chat_provider.dart';
 
@@ -71,7 +73,14 @@ class _ChatPanelState extends ConsumerState<ChatPanel> {
         return Column(
           children: [
             const SizedBox(height: 8),
-            Container(width: 40, height: 4, color: Colors.black26),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.divider,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
+            ),
             Expanded(
               child: messages.when(
                 loading: () => const Center(child: CircularProgressIndicator()),
@@ -131,7 +140,7 @@ class _MessageBubble extends StatelessWidget {
         child: Center(
           child: Text(
             message.message,
-            style: const TextStyle(fontSize: 12, color: Colors.black54),
+            style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
         ),
       );
@@ -147,7 +156,7 @@ class _MessageBubble extends StatelessWidget {
           color: message.isOwn
               ? Theme.of(context).colorScheme.primary
               : Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppRadius.md),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +167,7 @@ class _MessageBubble extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: message.isOwn ? Colors.white70 : Colors.black54,
+                  color: message.isOwn ? Colors.white70 : Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             Text(

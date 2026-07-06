@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../providers/auth_provider.dart';
 
@@ -47,32 +48,42 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: _sent
-              ? const Text(
-                  "If that email is registered, we've sent a link to reset your password.",
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Text('Enter your account email and we will send you a reset link.'),
-                    const SizedBox(height: 16),
-                    AppTextField(
-                      label: 'Email',
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Center(child: AppLogo(size: 64)),
+              const SizedBox(height: 24),
+              _sent
+                  ? const Text(
+                      "If that email is registered, we've sent a link to reset your password.",
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text('Enter your account email and we will send you a reset link.'),
+                        const SizedBox(height: 16),
+                        AppTextField(
+                          label: 'Email',
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        if (_error != null) ...[
+                          const SizedBox(height: 12),
+                          Text(
+                            _error!,
+                            style: TextStyle(color: Theme.of(context).colorScheme.error),
+                          ),
+                        ],
+                        const SizedBox(height: 24),
+                        AppButton(
+                          label: 'Send reset link',
+                          isLoading: _isSubmitting,
+                          onPressed: _submit,
+                        ),
+                      ],
                     ),
-                    if (_error != null) ...[
-                      const SizedBox(height: 12),
-                      Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-                    ],
-                    const SizedBox(height: 24),
-                    AppButton(
-                      label: 'Send reset link',
-                      isLoading: _isSubmitting,
-                      onPressed: _submit,
-                    ),
-                  ],
-                ),
+            ],
+          ),
         ),
       ),
     );

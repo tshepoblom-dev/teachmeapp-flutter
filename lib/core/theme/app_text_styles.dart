@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
+@Deprecated('Use Theme.of(context).textTheme instead — it now carries these same brand styles.')
 class AppTextStyles {
   const AppTextStyles._();
 

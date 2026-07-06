@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/route_paths.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../auth/domain/user.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../kyc/presentation/screens/kyc_screen.dart';
@@ -61,7 +62,7 @@ class ProfileScreen extends ConsumerWidget {
                   ],
                   if (!user.emailVerified)
                     Card(
-                      color: Colors.amber.shade50,
+                      color: AppColors.warning.withValues(alpha: 0.12),
                       child: ListTile(
                         leading: const Icon(Icons.mark_email_unread_outlined),
                         title: const Text('Email not verified'),

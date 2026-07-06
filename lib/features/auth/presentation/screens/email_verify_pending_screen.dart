@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../providers/auth_provider.dart';
 
 /// Soft nudge, not a router gate — no API route actually blocks on
@@ -94,6 +95,8 @@ class _EmailVerifyPendingScreenState extends ConsumerState<EmailVerifyPendingScr
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Center(child: AppLogo(size: 64)),
+              const SizedBox(height: 24),
               Icon(
                 _verified ? Icons.mark_email_read_outlined : Icons.mark_email_unread_outlined,
                 size: 56,

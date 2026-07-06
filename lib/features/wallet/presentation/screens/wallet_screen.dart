@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/date_time_formatter.dart';
 import '../../../../core/utils/money_formatter.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -115,14 +116,14 @@ class _TransactionTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       leading: Icon(
         isCredit ? Icons.arrow_downward : Icons.arrow_upward,
-        color: isCredit ? Colors.green : Colors.redAccent,
+        color: isCredit ? AppColors.success : Theme.of(context).colorScheme.error,
       ),
       title: Text(transaction.description ?? transaction.type.replaceAll('_', ' ')),
       subtitle: Text(DateTimeFormatter.dateTimeLabel(transaction.createdAt)),
       trailing: Text(
         '${isCredit ? '+' : '-'}${MoneyFormatter.format(transaction.amount)}',
         style: TextStyle(
-          color: isCredit ? Colors.green : Colors.redAccent,
+          color: isCredit ? AppColors.success : Theme.of(context).colorScheme.error,
           fontWeight: FontWeight.bold,
         ),
       ),

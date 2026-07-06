@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../providers/registration_form_provider.dart';
 
 class RegisterConsentScreen extends ConsumerStatefulWidget {
@@ -52,6 +53,8 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Center(child: AppLogo(size: 64)),
+              const SizedBox(height: 24),
               Text(
                 'Almost there — please review and accept our terms.',
                 style: Theme.of(context).textTheme.bodyLarge,

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/route_paths.dart';
+import '../../../../core/theme/app_radius.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../providers/registration_form_provider.dart';
 
 class RegisterRoleScreen extends ConsumerWidget {
@@ -18,6 +20,8 @@ class RegisterRoleScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Center(child: AppLogo(size: 64)),
+              const SizedBox(height: 24),
               Text("I'm joining as a...", style: Theme.of(context).textTheme.headlineSmall),
               const SizedBox(height: 24),
               _RoleCard(
@@ -65,7 +69,7 @@ class _RoleCard extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Row(

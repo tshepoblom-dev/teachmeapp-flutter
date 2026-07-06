@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../connectivity/connectivity_provider.dart';
+import '../theme/app_radius.dart';
 
 /// Wraps [child] with a slim "You're offline" banner pinned to the top of
 /// the screen whenever connectivity drops. Mounted once in `app.dart` via
@@ -20,15 +21,17 @@ class OfflineBanner extends ConsumerWidget {
         child,
         if (!isOnline)
           Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
+            top: 8,
+            left: 16,
+            right: 16,
             child: SafeArea(
               bottom: false,
               child: Material(
-                color: Colors.redAccent,
+                color: Theme.of(context).colorScheme.error,
+                elevation: 3,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [

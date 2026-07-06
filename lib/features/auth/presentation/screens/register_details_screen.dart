@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../providers/registration_form_provider.dart';
 
@@ -83,6 +84,8 @@ class _RegisterDetailsScreenState extends ConsumerState<RegisterDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Center(child: AppLogo(size: 64)),
+              const SizedBox(height: 24),
               AppTextField(label: 'Full name', controller: _nameController),
               const SizedBox(height: 16),
               AppTextField(

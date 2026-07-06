@@ -9,14 +9,12 @@ class AvailabilityRepository {
 
   final AvailabilityApi _api;
 
-  /// `GET /api/tutor/availability` — double-wrapped like institutions/
-  /// subjects: `{success,message,data:{data:[...]}}` (non-paginated
-  /// resource collection).
+  /// `GET /api/tutor/availability` — single-wrapped:
+  /// `{success,message,data:[...]}`.
   Future<List<AvailabilitySlot>> fetchSlots() async {
     try {
       final body = await _api.fetchSlots();
-      final wrapper = body['data'] as Map<String, dynamic>;
-      final items = (wrapper['data'] as List).cast<Map<String, dynamic>>();
+      final items = (body['data'] as List).cast<Map<String, dynamic>>();
       return items.map(AvailabilitySlot.fromJson).toList();
     } on DioException catch (e) {
       throw e.toAppException();

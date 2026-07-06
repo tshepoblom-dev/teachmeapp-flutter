@@ -34,24 +34,31 @@ class PushNotificationService {
   /// or cold-start token hydration). Safe to call again on a later login —
   /// the message-stream subscriptions are only attached once per process.
   Future<void> initializeAndRegister() async {
-    await _ensurePermission();
-    await _ensureLocalNotificationsInitialized();
+    // Push setup is best-effort: a transient FCM/permission failure here
+    // must never propagate to callers (e.g. AuthNotifier.login), or it gets
+    // mistaken for an auth failure and reverts a successful login/hydration.
+    try {
+      await _ensurePermission();
+      await _ensureLocalNotificationsInitialized();
 
-    final token = await FirebaseMessaging.instance.getToken();
-    if (token != null) {
-      await _registerToken(token);
-    }
-    FirebaseMessaging.instance.onTokenRefresh.listen(_registerToken);
-
-    if (!_listenersAttached) {
-      _listenersAttached = true;
-      FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
-      FirebaseMessaging.onMessageOpenedApp.listen(_handleOpenedMessage);
-
-      final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
-      if (initialMessage != null) {
-        _handleOpenedMessage(initialMessage);
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token != null) {
+        await _registerToken(token);
       }
+      FirebaseMessaging.instance.onTokenRefresh.listen(_registerToken);
+
+      if (!_listenersAttached) {
+        _listenersAttached = true;
+        FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+        FirebaseMessaging.onMessageOpenedApp.listen(_handleOpenedMessage);
+
+        final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+        if (initialMessage != null) {
+          _handleOpenedMessage(initialMessage);
+        }
+      }
+    } catch (e) {
+      developer.log('Failed to initialize push notifications: $e', name: 'PushNotificationService');
     }
   }
 

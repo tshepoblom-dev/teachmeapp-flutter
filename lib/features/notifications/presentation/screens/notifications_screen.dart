@@ -91,8 +91,41 @@ class _NotificationTile extends ConsumerWidget {
           context.push(RoutePaths.liveSession(sessionId));
         } else if (bookingId != null) {
           context.push(RoutePaths.bookingDetail(bookingId));
+        } else {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (_) => _NotificationDetailSheet(notification: notification),
+          );
         }
       },
+    );
+  }
+}
+
+class _NotificationDetailSheet extends StatelessWidget {
+  const _NotificationDetailSheet({required this.notification});
+
+  final AppNotification notification;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(notification.message, style: Theme.of(context).textTheme.bodyLarge),
+            const SizedBox(height: 8),
+            Text(
+              DateTimeFormatter.dateTimeLabel(notification.createdAt),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -10,15 +10,14 @@ class RoleBottomNav extends StatelessWidget {
 
   final int currentIndex;
   final ValueChanged<int> onTap;
-  final List<BottomNavigationBarItem> items;
+  final List<NavigationDestination> items;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      type: BottomNavigationBarType.fixed,
-      items: items,
+    return NavigationBar(
+      selectedIndex: currentIndex,
+      onDestinationSelected: onTap,
+      destinations: items,
     );
   }
 }
