@@ -1,4 +1,6 @@
 // ignore_for_file: invalid_annotation_target
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_method.freezed.dart';
@@ -11,6 +13,15 @@ double? _toNullableDouble(dynamic value) {
   if (value == null) return null;
   if (value is String) return double.parse(value);
   return (value as num).toDouble();
+}
+
+/// `supported_currencies` is sometimes emitted as a JSON-encoded string (or
+/// an empty string) rather than a decoded array, mirroring the same
+/// Laravel-cast quirk as [_toNullableDouble].
+List<String> _toStringList(dynamic value) {
+  if (value == null || value == '') return const [];
+  if (value is String) return (jsonDecode(value) as List).map((e) => e as String).toList();
+  return (value as List).map((e) => e as String).toList();
 }
 
 /// Mirrors `PaymentMethodResource`. `paymentFlow` is one of `redirect`,
@@ -26,7 +37,7 @@ class PaymentMethod with _$PaymentMethod {
     required bool isActive,
     required bool isDefault,
     String? paymentFlow,
-    @Default([]) List<String> supportedCurrencies,
+    @JsonKey(fromJson: _toStringList) @Default([]) List<String> supportedCurrencies,
     @JsonKey(fromJson: _toNullableDouble) double? minAmount,
     @JsonKey(fromJson: _toNullableDouble) double? maxAmount,
     int? settlementDays,

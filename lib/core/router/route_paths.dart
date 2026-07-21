@@ -2,6 +2,7 @@ class RoutePaths {
   const RoutePaths._();
 
   static const splash = '/splash';
+  static const onboarding = '/onboarding';
   static const login = '/login';
   static const registerRole = '/register';
   static const registerDetails = '/register/details';

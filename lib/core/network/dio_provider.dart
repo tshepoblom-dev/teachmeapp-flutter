@@ -11,7 +11,7 @@ import 'auth_session_events.dart';
 ///   flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000/api
 const apiBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue: 'https://1aaf-41-115-69-247.ngrok-free.app/api',
+  defaultValue: 'https://teachmeapp.co.za/api',
 );
 
 final dioProvider = Provider<Dio>((ref) {

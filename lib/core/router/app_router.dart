@@ -16,7 +16,9 @@ import '../../features/booking/presentation/screens/booking_detail_screen.dart';
 import '../../features/discover/presentation/screens/tutor_profile_screen.dart';
 import '../../features/home/presentation/screens/student_home_shell.dart';
 import '../../features/home/presentation/screens/tutor_home_shell.dart';
+import '../../features/onboarding/presentation/providers/onboarding_provider.dart';
 import '../../features/onboarding/presentation/screens/banned_screen.dart';
+import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/onboarding/presentation/screens/pending_kyc_screen.dart';
 import '../../features/onboarding/presentation/screens/suspended_screen.dart';
 import '../../features/profile/presentation/screens/edit_profile_screen.dart';
@@ -33,6 +35,8 @@ class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Ref ref) {
     ref.listen(authProvider, (_, __) => notifyListeners());
     ref.listen(authBootstrapProvider, (_, __) => notifyListeners());
+    ref.listen(onboardingProvider, (_, __) => notifyListeners());
+    ref.listen(onboardingBootstrapProvider, (_, __) => notifyListeners());
   }
 }
 
@@ -46,14 +50,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       final location = state.matchedLocation;
       final atSplash = location == RoutePaths.splash;
 
-      if (ref.read(authBootstrapProvider).isLoading) {
+      if (ref.read(authBootstrapProvider).isLoading || ref.read(onboardingBootstrapProvider).isLoading) {
         return atSplash ? null : RoutePaths.splash;
       }
 
       final atAuthRoute = RoutePaths.isAuthRoute(location);
+      final atOnboarding = location == RoutePaths.onboarding;
+      final hasSeenOnboarding = ref.read(onboardingProvider);
 
       return switch (ref.read(authProvider)) {
-        AuthUnauthenticated() || AuthError() => atAuthRoute ? null : RoutePaths.login,
+        AuthUnauthenticated() || AuthError() => !hasSeenOnboarding
+            ? (atOnboarding ? null : RoutePaths.onboarding)
+            : (atAuthRoute ? null : RoutePaths.login),
         AuthAuthenticating() => null,
         AuthAccountIssue(code: final code) =>
           accountIssuePath(code) ?? (atAuthRoute || atSplash ? RoutePaths.studentHome : null),
@@ -63,6 +71,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(path: RoutePaths.splash, builder: (_, __) => const SplashScreen()),
+      GoRoute(path: RoutePaths.onboarding, builder: (_, __) => const OnboardingScreen()),
       GoRoute(path: RoutePaths.login, builder: (_, __) => const LoginScreen()),
       GoRoute(path: RoutePaths.registerRole, builder: (_, __) => const RegisterRoleScreen()),
       GoRoute(

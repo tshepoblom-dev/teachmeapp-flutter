@@ -29,6 +29,7 @@ mixin _$PaymentMethod {
   bool get isActive => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
   String? get paymentFlow => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toStringList)
   List<String> get supportedCurrencies => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _toNullableDouble)
   double? get minAmount => throw _privateConstructorUsedError;
@@ -65,7 +66,7 @@ abstract class $PaymentMethodCopyWith<$Res> {
     bool isActive,
     bool isDefault,
     String? paymentFlow,
-    List<String> supportedCurrencies,
+    @JsonKey(fromJson: _toStringList) List<String> supportedCurrencies,
     @JsonKey(fromJson: _toNullableDouble) double? minAmount,
     @JsonKey(fromJson: _toNullableDouble) double? maxAmount,
     int? settlementDays,
@@ -207,7 +208,7 @@ abstract class _$$PaymentMethodImplCopyWith<$Res>
     bool isActive,
     bool isDefault,
     String? paymentFlow,
-    List<String> supportedCurrencies,
+    @JsonKey(fromJson: _toStringList) List<String> supportedCurrencies,
     @JsonKey(fromJson: _toNullableDouble) double? minAmount,
     @JsonKey(fromJson: _toNullableDouble) double? maxAmount,
     int? settlementDays,
@@ -341,6 +342,7 @@ class _$PaymentMethodImpl implements _PaymentMethod {
     required this.isActive,
     required this.isDefault,
     this.paymentFlow,
+    @JsonKey(fromJson: _toStringList)
     final List<String> supportedCurrencies = const [],
     @JsonKey(fromJson: _toNullableDouble) this.minAmount,
     @JsonKey(fromJson: _toNullableDouble) this.maxAmount,
@@ -371,7 +373,7 @@ class _$PaymentMethodImpl implements _PaymentMethod {
   final String? paymentFlow;
   final List<String> _supportedCurrencies;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: _toStringList)
   List<String> get supportedCurrencies {
     if (_supportedCurrencies is EqualUnmodifiableListView)
       return _supportedCurrencies;
@@ -479,7 +481,7 @@ abstract class _PaymentMethod implements PaymentMethod {
     required final bool isActive,
     required final bool isDefault,
     final String? paymentFlow,
-    final List<String> supportedCurrencies,
+    @JsonKey(fromJson: _toStringList) final List<String> supportedCurrencies,
     @JsonKey(fromJson: _toNullableDouble) final double? minAmount,
     @JsonKey(fromJson: _toNullableDouble) final double? maxAmount,
     final int? settlementDays,
@@ -508,6 +510,7 @@ abstract class _PaymentMethod implements PaymentMethod {
   @override
   String? get paymentFlow;
   @override
+  @JsonKey(fromJson: _toStringList)
   List<String> get supportedCurrencies;
   @override
   @JsonKey(fromJson: _toNullableDouble)

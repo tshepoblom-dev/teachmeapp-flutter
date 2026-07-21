@@ -33,12 +33,16 @@ mixin _$Profile {
   double? get hourlyRate => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _toDoubleOrNull)
   double? get averageRating => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalReviews => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalSessionsHosted => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalSessionsAttended => throw _privateConstructorUsedError;
   List<String>? get teachingSpecializations =>
       throw _privateConstructorUsedError;
   String? get educationLevel => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toIntOrNull)
   int? get yearsOfExperience => throw _privateConstructorUsedError;
   String? get tier => throw _privateConstructorUsedError;
   String? get tierColour => throw _privateConstructorUsedError;
@@ -68,12 +72,12 @@ abstract class $ProfileCopyWith<$Res> {
     List<String>? subjects,
     @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
     @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    int? totalReviews,
-    int? totalSessionsHosted,
-    int? totalSessionsAttended,
+    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    int? yearsOfExperience,
+    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   });
@@ -230,12 +234,12 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
     List<String>? subjects,
     @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
     @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    int? totalReviews,
-    int? totalSessionsHosted,
-    int? totalSessionsAttended,
+    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    int? yearsOfExperience,
+    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   });
@@ -385,12 +389,12 @@ class _$ProfileImpl implements _Profile {
     final List<String>? subjects,
     @JsonKey(fromJson: _toDoubleOrNull) this.hourlyRate,
     @JsonKey(fromJson: _toDoubleOrNull) this.averageRating,
-    this.totalReviews,
-    this.totalSessionsHosted,
-    this.totalSessionsAttended,
+    @JsonKey(fromJson: _toIntOrNull) this.totalReviews,
+    @JsonKey(fromJson: _toIntOrNull) this.totalSessionsHosted,
+    @JsonKey(fromJson: _toIntOrNull) this.totalSessionsAttended,
     final List<String>? teachingSpecializations,
     this.educationLevel,
-    this.yearsOfExperience,
+    @JsonKey(fromJson: _toIntOrNull) this.yearsOfExperience,
     this.tier,
     this.tierColour,
   }) : _subjects = subjects,
@@ -432,10 +436,13 @@ class _$ProfileImpl implements _Profile {
   @JsonKey(fromJson: _toDoubleOrNull)
   final double? averageRating;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   final int? totalReviews;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   final int? totalSessionsHosted;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   final int? totalSessionsAttended;
   final List<String>? _teachingSpecializations;
   @override
@@ -451,6 +458,7 @@ class _$ProfileImpl implements _Profile {
   @override
   final String? educationLevel;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   final int? yearsOfExperience;
   @override
   final String? tier;
@@ -554,12 +562,12 @@ abstract class _Profile implements Profile {
     final List<String>? subjects,
     @JsonKey(fromJson: _toDoubleOrNull) final double? hourlyRate,
     @JsonKey(fromJson: _toDoubleOrNull) final double? averageRating,
-    final int? totalReviews,
-    final int? totalSessionsHosted,
-    final int? totalSessionsAttended,
+    @JsonKey(fromJson: _toIntOrNull) final int? totalReviews,
+    @JsonKey(fromJson: _toIntOrNull) final int? totalSessionsHosted,
+    @JsonKey(fromJson: _toIntOrNull) final int? totalSessionsAttended,
     final List<String>? teachingSpecializations,
     final String? educationLevel,
-    final int? yearsOfExperience,
+    @JsonKey(fromJson: _toIntOrNull) final int? yearsOfExperience,
     final String? tier,
     final String? tierColour,
   }) = _$ProfileImpl;
@@ -589,16 +597,20 @@ abstract class _Profile implements Profile {
   @JsonKey(fromJson: _toDoubleOrNull)
   double? get averageRating;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalReviews;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalSessionsHosted;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   int? get totalSessionsAttended;
   @override
   List<String>? get teachingSpecializations;
   @override
   String? get educationLevel;
   @override
+  @JsonKey(fromJson: _toIntOrNull)
   int? get yearsOfExperience;
   @override
   String? get tier;

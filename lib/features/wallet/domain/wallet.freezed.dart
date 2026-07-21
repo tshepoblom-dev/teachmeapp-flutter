@@ -24,6 +24,7 @@ mixin _$Wallet {
   double get balance => throw _privateConstructorUsedError;
   double get escrowBalance => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _toPaymentMethodListOrNull)
   List<PaymentMethod>? get paymentMethods => throw _privateConstructorUsedError;
 
   /// Serializes this Wallet to a JSON map.
@@ -44,6 +45,7 @@ abstract class $WalletCopyWith<$Res> {
     double balance,
     double escrowBalance,
     String currency,
+    @JsonKey(fromJson: _toPaymentMethodListOrNull)
     List<PaymentMethod>? paymentMethods,
   });
 }
@@ -108,6 +110,7 @@ abstract class _$$WalletImplCopyWith<$Res> implements $WalletCopyWith<$Res> {
     double balance,
     double escrowBalance,
     String currency,
+    @JsonKey(fromJson: _toPaymentMethodListOrNull)
     List<PaymentMethod>? paymentMethods,
   });
 }
@@ -165,6 +168,7 @@ class _$WalletImpl implements _Wallet {
     required this.balance,
     required this.escrowBalance,
     required this.currency,
+    @JsonKey(fromJson: _toPaymentMethodListOrNull)
     final List<PaymentMethod>? paymentMethods,
   }) : _paymentMethods = paymentMethods;
 
@@ -179,6 +183,7 @@ class _$WalletImpl implements _Wallet {
   final String currency;
   final List<PaymentMethod>? _paymentMethods;
   @override
+  @JsonKey(fromJson: _toPaymentMethodListOrNull)
   List<PaymentMethod>? get paymentMethods {
     final value = _paymentMethods;
     if (value == null) return null;
@@ -237,6 +242,7 @@ abstract class _Wallet implements Wallet {
     required final double balance,
     required final double escrowBalance,
     required final String currency,
+    @JsonKey(fromJson: _toPaymentMethodListOrNull)
     final List<PaymentMethod>? paymentMethods,
   }) = _$WalletImpl;
 
@@ -249,6 +255,7 @@ abstract class _Wallet implements Wallet {
   @override
   String get currency;
   @override
+  @JsonKey(fromJson: _toPaymentMethodListOrNull)
   List<PaymentMethod>? get paymentMethods;
 
   /// Create a copy of Wallet

@@ -9,6 +9,8 @@ part 'profile.g.dart';
 
 double _toDouble(dynamic value) => (value as num).toDouble();
 double? _toDoubleOrNull(dynamic value) => value == null ? null : (value as num).toDouble();
+int? _toIntOrNull(dynamic value) =>
+    value == null ? null : (value is num ? value : num.parse(value as String)).toInt();
 
 /// Mirrors `ProfileResource` — common fields apply to both roles, the
 /// tutor-only fields (hourlyRate, subjects, tier, ...) are simply absent/null
@@ -26,12 +28,12 @@ class Profile with _$Profile {
     List<String>? subjects,
     @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
     @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    int? totalReviews,
-    int? totalSessionsHosted,
-    int? totalSessionsAttended,
+    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
+    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    int? yearsOfExperience,
+    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   }) = _Profile;

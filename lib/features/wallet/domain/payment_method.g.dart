@@ -17,10 +17,9 @@ _$PaymentMethodImpl _$$PaymentMethodImplFromJson(Map<String, dynamic> json) =>
       isDefault: json['is_default'] as bool,
       paymentFlow: json['payment_flow'] as String?,
       supportedCurrencies:
-          (json['supported_currencies'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+          json['supported_currencies'] == null
+              ? const []
+              : _toStringList(json['supported_currencies']),
       minAmount: _toNullableDouble(json['min_amount']),
       maxAmount: _toNullableDouble(json['max_amount']),
       settlementDays: (json['settlement_days'] as num?)?.toInt(),

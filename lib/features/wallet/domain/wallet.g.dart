@@ -10,10 +10,7 @@ _$WalletImpl _$$WalletImplFromJson(Map<String, dynamic> json) => _$WalletImpl(
   balance: (json['balance'] as num).toDouble(),
   escrowBalance: (json['escrow_balance'] as num).toDouble(),
   currency: json['currency'] as String,
-  paymentMethods:
-      (json['payment_methods'] as List<dynamic>?)
-          ?.map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  paymentMethods: _toPaymentMethodListOrNull(json['payment_methods']),
 );
 
 Map<String, dynamic> _$$WalletImplToJson(_$WalletImpl instance) =>
