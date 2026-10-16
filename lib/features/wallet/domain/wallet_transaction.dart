@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../core/utils/json_converters.dart';
 
 part 'wallet_transaction.freezed.dart';
 part 'wallet_transaction.g.dart';
@@ -12,8 +15,8 @@ class WalletTransaction with _$WalletTransaction {
     required int id,
     required String type,
     required String direction,
-    required double amount,
-    required double balanceAfter,
+    @JsonKey(fromJson: toDoubleLenient) required double amount,
+    @JsonKey(fromJson: toDoubleLenient) required double balanceAfter,
     String? description,
     String? reference,
     required DateTime createdAt,

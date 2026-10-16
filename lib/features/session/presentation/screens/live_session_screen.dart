@@ -53,7 +53,9 @@ class _LiveSessionScreenState extends ConsumerState<LiveSessionScreen> {
   void dispose() {
     _keepaliveTimer?.cancel();
     _pollTimer?.cancel();
-    _engine?.leaveChannel();
+    // Normal exits go through _leave(), which already awaits leaveChannel()
+    // before this fires. This release() is the fallback for teardown paths
+    // that don't go through _leave() (e.g. a system back gesture).
     _engine?.release();
     super.dispose();
   }
@@ -124,19 +126,36 @@ class _LiveSessionScreenState extends ConsumerState<LiveSessionScreen> {
 
   Future<void> _toggleMic() async {
     final next = !_micMuted;
-    await _engine?.muteLocalAudioStream(next);
-    setState(() => _micMuted = next);
+    try {
+      await _engine?.muteLocalAudioStream(next);
+      setState(() => _micMuted = next);
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(Failure.fromError(error).message)),
+        );
+      }
+    }
   }
 
   Future<void> _toggleCamera() async {
     final next = !_cameraOff;
-    await _engine?.enableLocalVideo(!next);
-    setState(() => _cameraOff = next);
+    try {
+      await _engine?.enableLocalVideo(!next);
+      setState(() => _cameraOff = next);
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(Failure.fromError(error).message)),
+        );
+      }
+    }
   }
 
   Future<void> _switchCamera() => _engine?.switchCamera() ?? Future.value();
 
   Future<void> _leave() async {
+    await _engine?.leaveChannel();
     if (!mounted) return;
     Navigator.of(context).pop();
   }
@@ -279,7 +298,7 @@ class _LiveSessionScreenState extends ConsumerState<LiveSessionScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (session != null && isTutor && session.status == 'active') ...[
+          if (session != null && isTutor && session.status == 'waiting') ...[
             AppButton(label: 'Start session', onPressed: _startSession),
             const SizedBox(height: 8),
           ],

@@ -37,7 +37,7 @@ Map<String, dynamic> _$$InstitutionRefImplToJson(
 
 _$TutorSummaryImpl _$$TutorSummaryImplFromJson(Map<String, dynamic> json) =>
     _$TutorSummaryImpl(
-      id: (json['id'] as num).toInt(),
+      id: toIntLenient(json['id']),
       name: json['name'] as String,
       bio: json['bio'] as String?,
       subjects:
@@ -50,9 +50,9 @@ _$TutorSummaryImpl _$$TutorSummaryImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => InstitutionRef.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      hourlyRate: _toDouble(json['hourly_rate']),
-      averageRating: _toDouble(json['average_rating']),
-      totalReviews: (json['total_reviews'] as num).toInt(),
+      hourlyRate: toDoubleLenient(json['hourly_rate']),
+      averageRating: toDoubleLenient(json['average_rating']),
+      totalReviews: toIntLenient(json['total_reviews']),
       tier: json['tier'] as String?,
       tierColour: json['tier_colour'] as String?,
       avatarUrl: json['avatar_url'] as String?,

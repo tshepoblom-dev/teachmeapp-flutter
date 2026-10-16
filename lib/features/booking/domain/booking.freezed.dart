@@ -21,11 +21,11 @@ BookingFinancials _$BookingFinancialsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookingFinancials {
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get totalAmount => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get platformFeePercent => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
 
@@ -47,9 +47,9 @@ abstract class $BookingFinancialsCopyWith<$Res> {
   ) = _$BookingFinancialsCopyWithImpl<$Res, BookingFinancials>;
   @useResult
   $Res call({
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double totalAmount,
-    @JsonKey(fromJson: _toDouble) double platformFeePercent,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double totalAmount,
+    @JsonKey(fromJson: toDoubleLenient) double platformFeePercent,
     String currency,
   });
 }
@@ -112,9 +112,9 @@ abstract class _$$BookingFinancialsImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double totalAmount,
-    @JsonKey(fromJson: _toDouble) double platformFeePercent,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double totalAmount,
+    @JsonKey(fromJson: toDoubleLenient) double platformFeePercent,
     String currency,
   });
 }
@@ -169,9 +169,9 @@ class __$$BookingFinancialsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BookingFinancialsImpl implements _BookingFinancials {
   const _$BookingFinancialsImpl({
-    @JsonKey(fromJson: _toDouble) required this.hourlyRate,
-    @JsonKey(fromJson: _toDouble) required this.totalAmount,
-    @JsonKey(fromJson: _toDouble) required this.platformFeePercent,
+    @JsonKey(fromJson: toDoubleLenient) required this.hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required this.totalAmount,
+    @JsonKey(fromJson: toDoubleLenient) required this.platformFeePercent,
     required this.currency,
   });
 
@@ -179,13 +179,13 @@ class _$BookingFinancialsImpl implements _BookingFinancials {
       _$$BookingFinancialsImplFromJson(json);
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double totalAmount;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double platformFeePercent;
   @override
   final String currency;
@@ -239,9 +239,10 @@ class _$BookingFinancialsImpl implements _BookingFinancials {
 
 abstract class _BookingFinancials implements BookingFinancials {
   const factory _BookingFinancials({
-    @JsonKey(fromJson: _toDouble) required final double hourlyRate,
-    @JsonKey(fromJson: _toDouble) required final double totalAmount,
-    @JsonKey(fromJson: _toDouble) required final double platformFeePercent,
+    @JsonKey(fromJson: toDoubleLenient) required final double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required final double totalAmount,
+    @JsonKey(fromJson: toDoubleLenient)
+    required final double platformFeePercent,
     required final String currency,
   }) = _$BookingFinancialsImpl;
 
@@ -249,13 +250,13 @@ abstract class _BookingFinancials implements BookingFinancials {
       _$BookingFinancialsImpl.fromJson;
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get totalAmount;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get platformFeePercent;
   @override
   String get currency;

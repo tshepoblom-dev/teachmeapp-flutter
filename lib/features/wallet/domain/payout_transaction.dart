@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../core/utils/json_converters.dart';
 
 part 'payout_transaction.freezed.dart';
 part 'payout_transaction.g.dart';
@@ -9,7 +12,7 @@ part 'payout_transaction.g.dart';
 class PayoutTransaction with _$PayoutTransaction {
   const factory PayoutTransaction({
     required int id,
-    required double amount,
+    @JsonKey(fromJson: toDoubleLenient) required double amount,
     required String status,
     required String reference,
     String? failureReason,

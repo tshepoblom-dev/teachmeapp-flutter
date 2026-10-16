@@ -52,7 +52,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           );
       if (mounted) context.go(RoutePaths.login);
     } catch (error) {
-      setState(() => _error = Failure.fromError(error).message);
+      if (mounted) setState(() => _error = Failure.fromError(error).message);
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }

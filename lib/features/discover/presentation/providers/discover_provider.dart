@@ -37,6 +37,8 @@ class DiscoverResult {
 /// Re-fetches page 1 automatically whenever [discoverFiltersProvider]
 /// changes (via `ref.watch`); [loadMore] appends subsequent pages.
 class DiscoverListNotifier extends AsyncNotifier<DiscoverResult> {
+  bool _isLoadingMore = false;
+
   @override
   Future<DiscoverResult> build() async {
     final filters = ref.watch(discoverFiltersProvider);
@@ -45,19 +47,25 @@ class DiscoverListNotifier extends AsyncNotifier<DiscoverResult> {
   }
 
   Future<void> loadMore() async {
+    if (_isLoadingMore) return;
     final current = state.valueOrNull;
     if (current == null || !current.hasMore) return;
 
-    final filters = ref.read(discoverFiltersProvider);
-    final next = await ref
-        .read(discoverRepositoryProvider)
-        .searchTutors(filters, page: current.page + 1);
+    _isLoadingMore = true;
+    try {
+      final filters = ref.read(discoverFiltersProvider);
+      final next = await ref
+          .read(discoverRepositoryProvider)
+          .searchTutors(filters, page: current.page + 1);
 
-    state = AsyncValue.data(DiscoverResult(
-      tutors: [...current.tutors, ...next.data],
-      hasMore: next.hasMore,
-      page: next.currentPage,
-    ));
+      state = AsyncValue.data(DiscoverResult(
+        tutors: [...current.tutors, ...next.data],
+        hasMore: next.hasMore,
+        page: next.currentPage,
+      ));
+    } finally {
+      _isLoadingMore = false;
+    }
   }
 }
 

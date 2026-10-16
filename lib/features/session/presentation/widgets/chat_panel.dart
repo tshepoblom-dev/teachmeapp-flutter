@@ -25,14 +25,25 @@ class _ChatPanelState extends ConsumerState<ChatPanel> {
   final _controller = TextEditingController();
   Timer? _pollTimer;
   bool _isSending = false;
+  bool _markReadPending = false;
 
   @override
   void initState() {
     super.initState();
-    ref.read(chatListProvider(widget.sessionId).notifier).markRead();
+    _markRead();
     _pollTimer = Timer.periodic(const Duration(seconds: 5), (_) {
       ref.read(chatListProvider(widget.sessionId).notifier).refresh();
+      if (_markReadPending) _markRead();
     });
+  }
+
+  Future<void> _markRead() async {
+    try {
+      await ref.read(chatListProvider(widget.sessionId).notifier).markRead();
+      _markReadPending = false;
+    } catch (_) {
+      _markReadPending = true;
+    }
   }
 
   @override

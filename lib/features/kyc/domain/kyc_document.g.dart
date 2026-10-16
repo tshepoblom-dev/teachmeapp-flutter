@@ -8,7 +8,7 @@ part of 'kyc_document.dart';
 
 _$KycDocumentImpl _$$KycDocumentImplFromJson(Map<String, dynamic> json) =>
     _$KycDocumentImpl(
-      id: (json['id'] as num).toInt(),
+      id: toIntLenient(json['id']),
       documentType: json['document_type'] as String,
       status: json['status'] as String,
       mimeType: json['mime_type'] as String?,

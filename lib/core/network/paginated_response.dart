@@ -1,3 +1,5 @@
+import '../utils/json_converters.dart';
+
 /// Laravel's standard paginator shape: `{data:[], links:{}, meta:{}}`.
 ///
 /// Used by list endpoints (bookings, notifications, chat, reviews,
@@ -32,10 +34,10 @@ class PaginatedResponse<T> {
       data: (json['data'] as List)
           .map((item) => fromItem(item as Map<String, dynamic>))
           .toList(),
-      currentPage: meta['current_page'] as int,
-      lastPage: meta['last_page'] as int,
-      perPage: meta['per_page'] as int,
-      total: meta['total'] as int,
+      currentPage: toIntLenient(meta['current_page']),
+      lastPage: toIntLenient(meta['last_page']),
+      perPage: toIntLenient(meta['per_page']),
+      total: toIntLenient(meta['total']),
       nextPageUrl: links?['next'] as String?,
     );
   }

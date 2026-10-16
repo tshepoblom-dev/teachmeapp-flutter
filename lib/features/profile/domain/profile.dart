@@ -4,13 +4,10 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/utils/json_converters.dart';
+
 part 'profile.freezed.dart';
 part 'profile.g.dart';
-
-double _toDouble(dynamic value) => (value as num).toDouble();
-double? _toDoubleOrNull(dynamic value) => value == null ? null : (value as num).toDouble();
-int? _toIntOrNull(dynamic value) =>
-    value == null ? null : (value is num ? value : num.parse(value as String)).toInt();
 
 /// Mirrors `ProfileResource` — common fields apply to both roles, the
 /// tutor-only fields (hourlyRate, subjects, tier, ...) are simply absent/null
@@ -26,14 +23,14 @@ class Profile with _$Profile {
     @Default(false) bool idVerified,
     @Default(false) bool isAvailable,
     List<String>? subjects,
-    @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
-    @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? hourlyRate,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? averageRating,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalReviews,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsHosted,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
+    @JsonKey(fromJson: toIntOrNullLenient) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   }) = _Profile;
@@ -44,8 +41,8 @@ class Profile with _$Profile {
 @freezed
 class UserWallet with _$UserWallet {
   const factory UserWallet({
-    @JsonKey(fromJson: _toDouble) required double balance,
-    @JsonKey(fromJson: _toDouble) required double escrowBalance,
+    @JsonKey(fromJson: toDoubleLenient) required double balance,
+    @JsonKey(fromJson: toDoubleLenient) required double escrowBalance,
     required String currency,
   }) = _UserWallet;
 

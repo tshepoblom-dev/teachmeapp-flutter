@@ -29,20 +29,20 @@ mixin _$Profile {
   bool get idVerified => throw _privateConstructorUsedError;
   bool get isAvailable => throw _privateConstructorUsedError;
   List<String>? get subjects => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   double? get hourlyRate => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   double? get averageRating => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalReviews => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalSessionsHosted => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalSessionsAttended => throw _privateConstructorUsedError;
   List<String>? get teachingSpecializations =>
       throw _privateConstructorUsedError;
   String? get educationLevel => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get yearsOfExperience => throw _privateConstructorUsedError;
   String? get tier => throw _privateConstructorUsedError;
   String? get tierColour => throw _privateConstructorUsedError;
@@ -70,14 +70,14 @@ abstract class $ProfileCopyWith<$Res> {
     bool idVerified,
     bool isAvailable,
     List<String>? subjects,
-    @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
-    @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? hourlyRate,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? averageRating,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalReviews,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsHosted,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
+    @JsonKey(fromJson: toIntOrNullLenient) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   });
@@ -232,14 +232,14 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
     bool idVerified,
     bool isAvailable,
     List<String>? subjects,
-    @JsonKey(fromJson: _toDoubleOrNull) double? hourlyRate,
-    @JsonKey(fromJson: _toDoubleOrNull) double? averageRating,
-    @JsonKey(fromJson: _toIntOrNull) int? totalReviews,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsHosted,
-    @JsonKey(fromJson: _toIntOrNull) int? totalSessionsAttended,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? hourlyRate,
+    @JsonKey(fromJson: toDoubleOrNullLenient) double? averageRating,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalReviews,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsHosted,
+    @JsonKey(fromJson: toIntOrNullLenient) int? totalSessionsAttended,
     List<String>? teachingSpecializations,
     String? educationLevel,
-    @JsonKey(fromJson: _toIntOrNull) int? yearsOfExperience,
+    @JsonKey(fromJson: toIntOrNullLenient) int? yearsOfExperience,
     String? tier,
     String? tierColour,
   });
@@ -387,14 +387,14 @@ class _$ProfileImpl implements _Profile {
     this.idVerified = false,
     this.isAvailable = false,
     final List<String>? subjects,
-    @JsonKey(fromJson: _toDoubleOrNull) this.hourlyRate,
-    @JsonKey(fromJson: _toDoubleOrNull) this.averageRating,
-    @JsonKey(fromJson: _toIntOrNull) this.totalReviews,
-    @JsonKey(fromJson: _toIntOrNull) this.totalSessionsHosted,
-    @JsonKey(fromJson: _toIntOrNull) this.totalSessionsAttended,
+    @JsonKey(fromJson: toDoubleOrNullLenient) this.hourlyRate,
+    @JsonKey(fromJson: toDoubleOrNullLenient) this.averageRating,
+    @JsonKey(fromJson: toIntOrNullLenient) this.totalReviews,
+    @JsonKey(fromJson: toIntOrNullLenient) this.totalSessionsHosted,
+    @JsonKey(fromJson: toIntOrNullLenient) this.totalSessionsAttended,
     final List<String>? teachingSpecializations,
     this.educationLevel,
-    @JsonKey(fromJson: _toIntOrNull) this.yearsOfExperience,
+    @JsonKey(fromJson: toIntOrNullLenient) this.yearsOfExperience,
     this.tier,
     this.tierColour,
   }) : _subjects = subjects,
@@ -430,19 +430,19 @@ class _$ProfileImpl implements _Profile {
   }
 
   @override
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   final double? hourlyRate;
   @override
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   final double? averageRating;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   final int? totalReviews;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   final int? totalSessionsHosted;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   final int? totalSessionsAttended;
   final List<String>? _teachingSpecializations;
   @override
@@ -458,7 +458,7 @@ class _$ProfileImpl implements _Profile {
   @override
   final String? educationLevel;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   final int? yearsOfExperience;
   @override
   final String? tier;
@@ -560,14 +560,14 @@ abstract class _Profile implements Profile {
     final bool idVerified,
     final bool isAvailable,
     final List<String>? subjects,
-    @JsonKey(fromJson: _toDoubleOrNull) final double? hourlyRate,
-    @JsonKey(fromJson: _toDoubleOrNull) final double? averageRating,
-    @JsonKey(fromJson: _toIntOrNull) final int? totalReviews,
-    @JsonKey(fromJson: _toIntOrNull) final int? totalSessionsHosted,
-    @JsonKey(fromJson: _toIntOrNull) final int? totalSessionsAttended,
+    @JsonKey(fromJson: toDoubleOrNullLenient) final double? hourlyRate,
+    @JsonKey(fromJson: toDoubleOrNullLenient) final double? averageRating,
+    @JsonKey(fromJson: toIntOrNullLenient) final int? totalReviews,
+    @JsonKey(fromJson: toIntOrNullLenient) final int? totalSessionsHosted,
+    @JsonKey(fromJson: toIntOrNullLenient) final int? totalSessionsAttended,
     final List<String>? teachingSpecializations,
     final String? educationLevel,
-    @JsonKey(fromJson: _toIntOrNull) final int? yearsOfExperience,
+    @JsonKey(fromJson: toIntOrNullLenient) final int? yearsOfExperience,
     final String? tier,
     final String? tierColour,
   }) = _$ProfileImpl;
@@ -591,26 +591,26 @@ abstract class _Profile implements Profile {
   @override
   List<String>? get subjects;
   @override
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   double? get hourlyRate;
   @override
-  @JsonKey(fromJson: _toDoubleOrNull)
+  @JsonKey(fromJson: toDoubleOrNullLenient)
   double? get averageRating;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalReviews;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalSessionsHosted;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get totalSessionsAttended;
   @override
   List<String>? get teachingSpecializations;
   @override
   String? get educationLevel;
   @override
-  @JsonKey(fromJson: _toIntOrNull)
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get yearsOfExperience;
   @override
   String? get tier;
@@ -631,9 +631,9 @@ UserWallet _$UserWalletFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserWallet {
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get balance => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get escrowBalance => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
 
@@ -655,8 +655,8 @@ abstract class $UserWalletCopyWith<$Res> {
   ) = _$UserWalletCopyWithImpl<$Res, UserWallet>;
   @useResult
   $Res call({
-    @JsonKey(fromJson: _toDouble) double balance,
-    @JsonKey(fromJson: _toDouble) double escrowBalance,
+    @JsonKey(fromJson: toDoubleLenient) double balance,
+    @JsonKey(fromJson: toDoubleLenient) double escrowBalance,
     String currency,
   });
 }
@@ -713,8 +713,8 @@ abstract class _$$UserWalletImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(fromJson: _toDouble) double balance,
-    @JsonKey(fromJson: _toDouble) double escrowBalance,
+    @JsonKey(fromJson: toDoubleLenient) double balance,
+    @JsonKey(fromJson: toDoubleLenient) double escrowBalance,
     String currency,
   });
 }
@@ -763,8 +763,8 @@ class __$$UserWalletImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserWalletImpl implements _UserWallet {
   const _$UserWalletImpl({
-    @JsonKey(fromJson: _toDouble) required this.balance,
-    @JsonKey(fromJson: _toDouble) required this.escrowBalance,
+    @JsonKey(fromJson: toDoubleLenient) required this.balance,
+    @JsonKey(fromJson: toDoubleLenient) required this.escrowBalance,
     required this.currency,
   });
 
@@ -772,10 +772,10 @@ class _$UserWalletImpl implements _UserWallet {
       _$$UserWalletImplFromJson(json);
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double balance;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double escrowBalance;
   @override
   final String currency;
@@ -818,8 +818,8 @@ class _$UserWalletImpl implements _UserWallet {
 
 abstract class _UserWallet implements UserWallet {
   const factory _UserWallet({
-    @JsonKey(fromJson: _toDouble) required final double balance,
-    @JsonKey(fromJson: _toDouble) required final double escrowBalance,
+    @JsonKey(fromJson: toDoubleLenient) required final double balance,
+    @JsonKey(fromJson: toDoubleLenient) required final double escrowBalance,
     required final String currency,
   }) = _$UserWalletImpl;
 
@@ -827,10 +827,10 @@ abstract class _UserWallet implements UserWallet {
       _$UserWalletImpl.fromJson;
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get balance;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get escrowBalance;
   @override
   String get currency;

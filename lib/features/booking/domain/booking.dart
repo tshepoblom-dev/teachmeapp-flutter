@@ -1,22 +1,21 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/utils/json_converters.dart';
 import 'review.dart';
 import 'session_preview.dart';
 
 part 'booking.freezed.dart';
 part 'booking.g.dart';
 
-double _toDouble(dynamic value) => (value as num).toDouble();
-
 /// Mirrors `BookingResource`'s `financials` block — only present
 /// (`whenLoaded`/`when`) for the booking's two parties or an admin.
 @freezed
 class BookingFinancials with _$BookingFinancials {
   const factory BookingFinancials({
-    @JsonKey(fromJson: _toDouble) required double hourlyRate,
-    @JsonKey(fromJson: _toDouble) required double totalAmount,
-    @JsonKey(fromJson: _toDouble) required double platformFeePercent,
+    @JsonKey(fromJson: toDoubleLenient) required double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required double totalAmount,
+    @JsonKey(fromJson: toDoubleLenient) required double platformFeePercent,
     required String currency,
   }) = _BookingFinancials;
 

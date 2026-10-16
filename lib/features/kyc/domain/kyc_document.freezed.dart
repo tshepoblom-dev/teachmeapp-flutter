@@ -21,6 +21,7 @@ KycDocument _$KycDocumentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KycDocument {
+  @JsonKey(fromJson: toIntLenient)
   int get id => throw _privateConstructorUsedError;
   String get documentType => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -48,7 +49,7 @@ abstract class $KycDocumentCopyWith<$Res> {
   ) = _$KycDocumentCopyWithImpl<$Res, KycDocument>;
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String documentType,
     String status,
     String? mimeType,
@@ -141,7 +142,7 @@ abstract class _$$KycDocumentImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String documentType,
     String status,
     String? mimeType,
@@ -226,7 +227,7 @@ class __$$KycDocumentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KycDocumentImpl implements _KycDocument {
   const _$KycDocumentImpl({
-    required this.id,
+    @JsonKey(fromJson: toIntLenient) required this.id,
     required this.documentType,
     required this.status,
     this.mimeType,
@@ -240,6 +241,7 @@ class _$KycDocumentImpl implements _KycDocument {
       _$$KycDocumentImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int id;
   @override
   final String documentType;
@@ -312,7 +314,7 @@ class _$KycDocumentImpl implements _KycDocument {
 
 abstract class _KycDocument implements KycDocument {
   const factory _KycDocument({
-    required final int id,
+    @JsonKey(fromJson: toIntLenient) required final int id,
     required final String documentType,
     required final String status,
     final String? mimeType,
@@ -326,6 +328,7 @@ abstract class _KycDocument implements KycDocument {
       _$KycDocumentImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get id;
   @override
   String get documentType;

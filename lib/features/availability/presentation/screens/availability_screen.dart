@@ -10,6 +10,9 @@ import '../providers/availability_provider.dart';
 
 const _weekdayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
+String _weekdayName(int dayOfWeek) =>
+    dayOfWeek >= 0 && dayOfWeek < _weekdayNames.length ? _weekdayNames[dayOfWeek] : 'Unknown day';
+
 class AvailabilityScreen extends ConsumerStatefulWidget {
   const AvailabilityScreen({super.key});
 
@@ -50,7 +53,7 @@ class _AvailabilityScreenState extends ConsumerState<AvailabilityScreen> {
             isRecurring: _isRecurring,
           );
     } catch (error) {
-      setState(() => _error = Failure.fromError(error).message);
+      if (mounted) setState(() => _error = Failure.fromError(error).message);
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }
@@ -159,7 +162,7 @@ class _SlotCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: ListTile(
-        title: Text('${_weekdayNames[slot.dayOfWeek]}  ${slot.startTime} – ${slot.endTime}'),
+        title: Text('${_weekdayName(slot.dayOfWeek)}  ${slot.startTime} – ${slot.endTime}'),
         subtitle: Text([
           if (slot.isRecurring) 'Weekly',
           if (!slot.isActive) 'Inactive',

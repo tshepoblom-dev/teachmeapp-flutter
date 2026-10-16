@@ -34,7 +34,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
         if (mounted) context.go(RoutePaths.registerDetails);
         return;
       }
-      setState(() => _generalError = failure.message);
+      if (mounted) setState(() => _generalError = failure.message);
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }

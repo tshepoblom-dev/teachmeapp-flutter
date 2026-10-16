@@ -18,6 +18,9 @@ class BookingCreateNotifier extends FamilyNotifier<BookingCreateFormState, int> 
 
   void setDuration(int minutes) => state = state.copyWith(durationMinutes: minutes);
 
+  void setPaymentMethod(int? paymentMethodId) =>
+      state = state.copyWith(paymentMethodId: paymentMethodId);
+
   /// Live preview only — the server's `total_amount` on the created booking
   /// is always authoritative.
   double previewTotal(double hourlyRate) => hourlyRate * state.durationMinutes / 60;
@@ -31,6 +34,7 @@ class BookingCreateNotifier extends FamilyNotifier<BookingCreateFormState, int> 
             description: state.description,
             scheduledAt: state.scheduledAt!,
             durationMinutes: state.durationMinutes,
+            paymentMethodId: state.paymentMethodId,
           );
       ref.invalidate(bookingListProvider);
       ref.invalidate(upcomingBookingsProvider);

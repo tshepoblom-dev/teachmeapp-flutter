@@ -16,6 +16,7 @@ import '../../features/booking/presentation/screens/booking_detail_screen.dart';
 import '../../features/discover/presentation/screens/tutor_profile_screen.dart';
 import '../../features/home/presentation/screens/student_home_shell.dart';
 import '../../features/home/presentation/screens/tutor_home_shell.dart';
+import '../../features/kyc/presentation/screens/kyc_screen.dart';
 import '../../features/onboarding/presentation/providers/onboarding_provider.dart';
 import '../../features/onboarding/presentation/screens/banned_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -34,10 +35,24 @@ import 'splash_screen.dart';
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Ref ref) {
     ref.listen(authProvider, (_, __) => notifyListeners());
-    ref.listen(authBootstrapProvider, (_, __) => notifyListeners());
+    ref.listen(authBootstrapProvider, (_, next) {
+      if (!next.isLoading) _authBootstrapped = true;
+      notifyListeners();
+    });
     ref.listen(onboardingProvider, (_, __) => notifyListeners());
-    ref.listen(onboardingBootstrapProvider, (_, __) => notifyListeners());
+    ref.listen(onboardingBootstrapProvider, (_, next) {
+      if (!next.isLoading) _onboardingBootstrapped = true;
+      notifyListeners();
+    });
   }
+
+  // Once each bootstrap provider has resolved at least once, a later
+  // isLoading flip (e.g. from a future invalidate/refresh) shouldn't force
+  // the user back to the splash screen mid-session.
+  bool _authBootstrapped = false;
+  bool _onboardingBootstrapped = false;
+
+  bool get isBootstrapping => !_authBootstrapped || !_onboardingBootstrapped;
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -50,7 +65,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       final location = state.matchedLocation;
       final atSplash = location == RoutePaths.splash;
 
-      if (ref.read(authBootstrapProvider).isLoading || ref.read(onboardingBootstrapProvider).isLoading) {
+      if (refreshListenable.isBootstrapping) {
         return atSplash ? null : RoutePaths.splash;
       }
 
@@ -63,8 +78,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             ? (atOnboarding ? null : RoutePaths.onboarding)
             : (atAuthRoute ? null : RoutePaths.login),
         AuthAuthenticating() => null,
-        AuthAccountIssue(code: final code) =>
-          accountIssuePath(code) ?? (atAuthRoute || atSplash ? RoutePaths.studentHome : null),
+        AuthAccountIssue(code: final code, user: final user) =>
+          (code == 'pending_kyc' && location == RoutePaths.kyc)
+              ? null
+              : accountIssuePath(code) ??
+                  (atAuthRoute || atSplash ? roleHomePath(user.role) : null),
         AuthAuthenticated(user: final user) =>
           (atAuthRoute || atSplash) ? roleHomePath(user.role) : null,
       };
@@ -100,6 +118,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: RoutePaths.suspended, builder: (_, __) => const SuspendedScreen()),
       GoRoute(path: RoutePaths.banned, builder: (_, __) => const BannedScreen()),
       GoRoute(path: RoutePaths.pendingKyc, builder: (_, __) => const PendingKycScreen()),
+      GoRoute(path: RoutePaths.kyc, builder: (_, __) => const KycScreen()),
       GoRoute(path: RoutePaths.studentHome, builder: (_, __) => const StudentHomeShell()),
       GoRoute(path: RoutePaths.tutorHome, builder: (_, __) => const TutorHomeShell()),
       GoRoute(path: RoutePaths.editProfile, builder: (_, __) => const EditProfileScreen()),

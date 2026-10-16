@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as developer;
 
@@ -29,6 +30,7 @@ class PushNotificationService {
   final Ref _ref;
   final FlutterLocalNotificationsPlugin _localNotifications;
   bool _listenersAttached = false;
+  StreamSubscription<String>? _tokenRefreshSubscription;
 
   /// Call once, right after the user becomes authenticated (login, register,
   /// or cold-start token hydration). Safe to call again on a later login —
@@ -45,7 +47,8 @@ class PushNotificationService {
       if (token != null) {
         await _registerToken(token);
       }
-      FirebaseMessaging.instance.onTokenRefresh.listen(_registerToken);
+      await _tokenRefreshSubscription?.cancel();
+      _tokenRefreshSubscription = FirebaseMessaging.instance.onTokenRefresh.listen(_registerToken);
 
       if (!_listenersAttached) {
         _listenersAttached = true;
@@ -69,6 +72,8 @@ class PushNotificationService {
     } catch (e) {
       developer.log('Failed to clear FCM token server-side: $e', name: 'PushNotificationService');
     }
+    await _tokenRefreshSubscription?.cancel();
+    _tokenRefreshSubscription = null;
     await FirebaseMessaging.instance.deleteToken();
   }
 

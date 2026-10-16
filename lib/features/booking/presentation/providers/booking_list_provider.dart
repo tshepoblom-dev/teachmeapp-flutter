@@ -15,6 +15,8 @@ class BookingListResult {
 /// instance per status tab, so switching tabs doesn't refetch tabs already
 /// loaded.
 class BookingListNotifier extends FamilyAsyncNotifier<BookingListResult, String?> {
+  bool _isLoadingMore = false;
+
   @override
   Future<BookingListResult> build(String? status) async {
     final page = await ref.read(bookingRepositoryProvider).fetchBookings(status: status);
@@ -22,18 +24,24 @@ class BookingListNotifier extends FamilyAsyncNotifier<BookingListResult, String?
   }
 
   Future<void> loadMore() async {
+    if (_isLoadingMore) return;
     final current = state.valueOrNull;
     if (current == null || !current.hasMore) return;
 
-    final next = await ref
-        .read(bookingRepositoryProvider)
-        .fetchBookings(status: arg, page: current.page + 1);
+    _isLoadingMore = true;
+    try {
+      final next = await ref
+          .read(bookingRepositoryProvider)
+          .fetchBookings(status: arg, page: current.page + 1);
 
-    state = AsyncValue.data(BookingListResult(
-      bookings: [...current.bookings, ...next.data],
-      hasMore: next.hasMore,
-      page: next.currentPage,
-    ));
+      state = AsyncValue.data(BookingListResult(
+        bookings: [...current.bookings, ...next.data],
+        hasMore: next.hasMore,
+        page: next.currentPage,
+      ));
+    } finally {
+      _isLoadingMore = false;
+    }
   }
 
   void refresh() => ref.invalidateSelf();

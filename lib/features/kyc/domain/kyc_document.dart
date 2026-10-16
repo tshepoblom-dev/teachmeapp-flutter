@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../core/utils/json_converters.dart';
 
 part 'kyc_document.freezed.dart';
 part 'kyc_document.g.dart';
@@ -9,7 +12,7 @@ part 'kyc_document.g.dart';
 @freezed
 class KycDocument with _$KycDocument {
   const factory KycDocument({
-    required int id,
+    @JsonKey(fromJson: toIntLenient) required int id,
     required String documentType,
     required String status,
     String? mimeType,

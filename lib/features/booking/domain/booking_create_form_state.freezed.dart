@@ -21,6 +21,7 @@ mixin _$BookingCreateFormState {
   String get description => throw _privateConstructorUsedError;
   DateTime? get scheduledAt => throw _privateConstructorUsedError;
   int get durationMinutes => throw _privateConstructorUsedError;
+  int? get paymentMethodId => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   Map<String, List<String>>? get fieldErrors =>
       throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $BookingCreateFormStateCopyWith<$Res> {
     String description,
     DateTime? scheduledAt,
     int durationMinutes,
+    int? paymentMethodId,
     bool isSubmitting,
     Map<String, List<String>>? fieldErrors,
   });
@@ -71,6 +73,7 @@ class _$BookingCreateFormStateCopyWithImpl<
     Object? description = null,
     Object? scheduledAt = freezed,
     Object? durationMinutes = null,
+    Object? paymentMethodId = freezed,
     Object? isSubmitting = null,
     Object? fieldErrors = freezed,
   }) {
@@ -96,6 +99,11 @@ class _$BookingCreateFormStateCopyWithImpl<
                     ? _value.durationMinutes
                     : durationMinutes // ignore: cast_nullable_to_non_nullable
                         as int,
+            paymentMethodId:
+                freezed == paymentMethodId
+                    ? _value.paymentMethodId
+                    : paymentMethodId // ignore: cast_nullable_to_non_nullable
+                        as int?,
             isSubmitting:
                 null == isSubmitting
                     ? _value.isSubmitting
@@ -126,6 +134,7 @@ abstract class _$$BookingCreateFormStateImplCopyWith<$Res>
     String description,
     DateTime? scheduledAt,
     int durationMinutes,
+    int? paymentMethodId,
     bool isSubmitting,
     Map<String, List<String>>? fieldErrors,
   });
@@ -150,6 +159,7 @@ class __$$BookingCreateFormStateImplCopyWithImpl<$Res>
     Object? description = null,
     Object? scheduledAt = freezed,
     Object? durationMinutes = null,
+    Object? paymentMethodId = freezed,
     Object? isSubmitting = null,
     Object? fieldErrors = freezed,
   }) {
@@ -175,6 +185,11 @@ class __$$BookingCreateFormStateImplCopyWithImpl<$Res>
                 ? _value.durationMinutes
                 : durationMinutes // ignore: cast_nullable_to_non_nullable
                     as int,
+        paymentMethodId:
+            freezed == paymentMethodId
+                ? _value.paymentMethodId
+                : paymentMethodId // ignore: cast_nullable_to_non_nullable
+                    as int?,
         isSubmitting:
             null == isSubmitting
                 ? _value.isSubmitting
@@ -198,6 +213,7 @@ class _$BookingCreateFormStateImpl implements _BookingCreateFormState {
     this.description = '',
     this.scheduledAt,
     this.durationMinutes = 60,
+    this.paymentMethodId,
     this.isSubmitting = false,
     final Map<String, List<String>>? fieldErrors,
   }) : _fieldErrors = fieldErrors;
@@ -213,6 +229,8 @@ class _$BookingCreateFormStateImpl implements _BookingCreateFormState {
   @JsonKey()
   final int durationMinutes;
   @override
+  final int? paymentMethodId;
+  @override
   @JsonKey()
   final bool isSubmitting;
   final Map<String, List<String>>? _fieldErrors;
@@ -227,7 +245,7 @@ class _$BookingCreateFormStateImpl implements _BookingCreateFormState {
 
   @override
   String toString() {
-    return 'BookingCreateFormState(subject: $subject, description: $description, scheduledAt: $scheduledAt, durationMinutes: $durationMinutes, isSubmitting: $isSubmitting, fieldErrors: $fieldErrors)';
+    return 'BookingCreateFormState(subject: $subject, description: $description, scheduledAt: $scheduledAt, durationMinutes: $durationMinutes, paymentMethodId: $paymentMethodId, isSubmitting: $isSubmitting, fieldErrors: $fieldErrors)';
   }
 
   @override
@@ -242,6 +260,8 @@ class _$BookingCreateFormStateImpl implements _BookingCreateFormState {
                 other.scheduledAt == scheduledAt) &&
             (identical(other.durationMinutes, durationMinutes) ||
                 other.durationMinutes == durationMinutes) &&
+            (identical(other.paymentMethodId, paymentMethodId) ||
+                other.paymentMethodId == paymentMethodId) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
             const DeepCollectionEquality().equals(
@@ -257,6 +277,7 @@ class _$BookingCreateFormStateImpl implements _BookingCreateFormState {
     description,
     scheduledAt,
     durationMinutes,
+    paymentMethodId,
     isSubmitting,
     const DeepCollectionEquality().hash(_fieldErrors),
   );
@@ -280,6 +301,7 @@ abstract class _BookingCreateFormState implements BookingCreateFormState {
     final String description,
     final DateTime? scheduledAt,
     final int durationMinutes,
+    final int? paymentMethodId,
     final bool isSubmitting,
     final Map<String, List<String>>? fieldErrors,
   }) = _$BookingCreateFormStateImpl;
@@ -292,6 +314,8 @@ abstract class _BookingCreateFormState implements BookingCreateFormState {
   DateTime? get scheduledAt;
   @override
   int get durationMinutes;
+  @override
+  int? get paymentMethodId;
   @override
   bool get isSubmitting;
   @override

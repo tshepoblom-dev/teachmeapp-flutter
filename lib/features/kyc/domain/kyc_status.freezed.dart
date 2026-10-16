@@ -21,12 +21,14 @@ KycApplication _$KycApplicationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KycApplication {
+  @JsonKey(fromJson: toIntLenient)
   int get id => throw _privateConstructorUsedError;
   String get applicationType => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get submittedAt => throw _privateConstructorUsedError;
   String? get reviewedAt => throw _privateConstructorUsedError;
   String? get rejectionReason => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get resubmissionCount => throw _privateConstructorUsedError;
   List<KycDocument> get documents => throw _privateConstructorUsedError;
   List<String> get requiredDocuments => throw _privateConstructorUsedError;
@@ -51,13 +53,13 @@ abstract class $KycApplicationCopyWith<$Res> {
   ) = _$KycApplicationCopyWithImpl<$Res, KycApplication>;
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String applicationType,
     String status,
     String? submittedAt,
     String? reviewedAt,
     String? rejectionReason,
-    int? resubmissionCount,
+    @JsonKey(fromJson: toIntOrNullLenient) int? resubmissionCount,
     List<KycDocument> documents,
     List<String> requiredDocuments,
     List<String> missingDocuments,
@@ -165,13 +167,13 @@ abstract class _$$KycApplicationImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String applicationType,
     String status,
     String? submittedAt,
     String? reviewedAt,
     String? rejectionReason,
-    int? resubmissionCount,
+    @JsonKey(fromJson: toIntOrNullLenient) int? resubmissionCount,
     List<KycDocument> documents,
     List<String> requiredDocuments,
     List<String> missingDocuments,
@@ -271,13 +273,13 @@ class __$$KycApplicationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KycApplicationImpl implements _KycApplication {
   const _$KycApplicationImpl({
-    required this.id,
+    @JsonKey(fromJson: toIntLenient) required this.id,
     required this.applicationType,
     required this.status,
     this.submittedAt,
     this.reviewedAt,
     this.rejectionReason,
-    this.resubmissionCount,
+    @JsonKey(fromJson: toIntOrNullLenient) this.resubmissionCount,
     final List<KycDocument> documents = const [],
     final List<String> requiredDocuments = const [],
     final List<String> missingDocuments = const [],
@@ -290,6 +292,7 @@ class _$KycApplicationImpl implements _KycApplication {
       _$$KycApplicationImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int id;
   @override
   final String applicationType;
@@ -302,6 +305,7 @@ class _$KycApplicationImpl implements _KycApplication {
   @override
   final String? rejectionReason;
   @override
+  @JsonKey(fromJson: toIntOrNullLenient)
   final int? resubmissionCount;
   final List<KycDocument> _documents;
   @override
@@ -409,13 +413,13 @@ class _$KycApplicationImpl implements _KycApplication {
 
 abstract class _KycApplication implements KycApplication {
   const factory _KycApplication({
-    required final int id,
+    @JsonKey(fromJson: toIntLenient) required final int id,
     required final String applicationType,
     required final String status,
     final String? submittedAt,
     final String? reviewedAt,
     final String? rejectionReason,
-    final int? resubmissionCount,
+    @JsonKey(fromJson: toIntOrNullLenient) final int? resubmissionCount,
     final List<KycDocument> documents,
     final List<String> requiredDocuments,
     final List<String> missingDocuments,
@@ -426,6 +430,7 @@ abstract class _KycApplication implements KycApplication {
       _$KycApplicationImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get id;
   @override
   String get applicationType;
@@ -438,6 +443,7 @@ abstract class _KycApplication implements KycApplication {
   @override
   String? get rejectionReason;
   @override
+  @JsonKey(fromJson: toIntOrNullLenient)
   int? get resubmissionCount;
   @override
   List<KycDocument> get documents;

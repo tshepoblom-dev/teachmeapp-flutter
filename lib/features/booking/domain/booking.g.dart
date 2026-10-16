@@ -9,9 +9,9 @@ part of 'booking.dart';
 _$BookingFinancialsImpl _$$BookingFinancialsImplFromJson(
   Map<String, dynamic> json,
 ) => _$BookingFinancialsImpl(
-  hourlyRate: _toDouble(json['hourly_rate']),
-  totalAmount: _toDouble(json['total_amount']),
-  platformFeePercent: _toDouble(json['platform_fee_percent']),
+  hourlyRate: toDoubleLenient(json['hourly_rate']),
+  totalAmount: toDoubleLenient(json['total_amount']),
+  platformFeePercent: toDoubleLenient(json['platform_fee_percent']),
   currency: json['currency'] as String,
 );
 

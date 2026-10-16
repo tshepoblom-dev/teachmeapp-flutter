@@ -10,7 +10,7 @@ _$PayoutTransactionImpl _$$PayoutTransactionImplFromJson(
   Map<String, dynamic> json,
 ) => _$PayoutTransactionImpl(
   id: (json['id'] as num).toInt(),
-  amount: (json['amount'] as num).toDouble(),
+  amount: toDoubleLenient(json['amount']),
   status: json['status'] as String,
   reference: json['reference'] as String,
   failureReason: json['failure_reason'] as String?,

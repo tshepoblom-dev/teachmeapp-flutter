@@ -45,8 +45,11 @@ class KycScreen extends ConsumerWidget {
           onRetry: () => ref.read(kycStatusProvider.notifier).refresh(),
         ),
         data: (summary) {
-          if (summary.application == null) {
-            return _ApplyPrompt(applicationType: isTutor ? 'new_tutor' : 'student_upgrade');
+          if (summary.canApply) {
+            return _ApplyPrompt(
+              applicationType: isTutor ? 'new_tutor' : 'student_upgrade',
+              previousRejectionReason: summary.application?.rejectionReason,
+            );
           }
           return _ApplicationView(summary: summary);
         },
@@ -56,12 +59,14 @@ class KycScreen extends ConsumerWidget {
 }
 
 class _ApplyPrompt extends ConsumerWidget {
-  const _ApplyPrompt({required this.applicationType});
+  const _ApplyPrompt({required this.applicationType, this.previousRejectionReason});
 
   final String applicationType;
+  final String? previousRejectionReason;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final wasRejected = previousRejectionReason != null;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -70,13 +75,21 @@ class _ApplyPrompt extends ConsumerWidget {
           children: [
             const Icon(Icons.badge_outlined, size: 48),
             const SizedBox(height: 16),
+            if (wasRejected) ...[
+              Text(
+                'Your previous application was rejected: $previousRejectionReason',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.redAccent),
+              ),
+              const SizedBox(height: 8),
+            ],
             const Text(
               'Verify your identity to unlock full platform access.',
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             AppButton(
-              label: 'Start verification',
+              label: wasRejected ? 'Re-apply' : 'Start verification',
               onPressed: () async {
                 try {
                   await ref.read(kycStatusProvider.notifier).apply(applicationType);

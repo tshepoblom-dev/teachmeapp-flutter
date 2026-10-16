@@ -9,7 +9,7 @@ part of 'availability_window.dart';
 _$AvailabilityWindowImpl _$$AvailabilityWindowImplFromJson(
   Map<String, dynamic> json,
 ) => _$AvailabilityWindowImpl(
-  dayOfWeek: (json['day_of_week'] as num).toInt(),
+  dayOfWeek: _clampDayOfWeek(json['day_of_week']),
   startTime: json['start_time'] as String,
   endTime: json['end_time'] as String,
 );

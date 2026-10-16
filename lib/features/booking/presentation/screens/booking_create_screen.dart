@@ -10,6 +10,8 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/error_view.dart';
 import '../../../discover/domain/availability_window.dart';
 import '../../../discover/presentation/providers/tutor_profile_provider.dart';
+import '../../../wallet/presentation/providers/payment_provider.dart';
+import '../../../wallet/presentation/widgets/payment_method_tile.dart';
 import '../../domain/booking_create_form_state.dart';
 import '../providers/booking_create_provider.dart';
 
@@ -65,7 +67,7 @@ class _BookingCreateScreenState extends ConsumerState<BookingCreateScreen> {
       if (mounted) context.go(RoutePaths.bookingDetail(booking.id));
     } catch (error) {
       final failure = Failure.fromError(error);
-      if (failure.fieldErrors == null) {
+      if (failure.fieldErrors == null && mounted) {
         setState(() => _generalError = failure.message);
       }
     } finally {
@@ -136,6 +138,37 @@ class _BookingCreateScreenState extends ConsumerState<BookingCreateScreen> {
                       onSelected: (_) => formNotifier.setDuration(minutes),
                     );
                   }).toList(),
+                ),
+                const SizedBox(height: 16),
+                Text('Payment method', style: Theme.of(context).textTheme.titleSmall),
+                Consumer(
+                  builder: (context, ref, _) {
+                    final methods = ref.watch(paymentMethodsProvider);
+                    return methods.when(
+                      loading: () => const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                      error: (error, _) => Text(Failure.fromError(error).message),
+                      data: (allMethods) {
+                        final activeMethods = allMethods.where((m) => m.isActive).toList();
+                        if (form.paymentMethodId == null && activeMethods.isNotEmpty) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            formNotifier.setPaymentMethod(activeMethods.first.id);
+                          });
+                        }
+                        return Column(
+                          children: activeMethods
+                              .map((method) => PaymentMethodTile(
+                                    method: method,
+                                    isSelected: form.paymentMethodId == method.id,
+                                    onTap: () => formNotifier.setPaymentMethod(method.id),
+                                  ))
+                              .toList(),
+                        );
+                      },
+                    );
+                  },
                 ),
                 const SizedBox(height: 16),
                 Text('Pick a day', style: Theme.of(context).textTheme.titleSmall),

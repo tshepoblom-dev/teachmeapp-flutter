@@ -474,17 +474,20 @@ TutorProfile _$TutorProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TutorProfile {
+  @JsonKey(fromJson: toIntLenient)
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   List<SubjectDetailRef> get subjects => throw _privateConstructorUsedError;
   List<InstitutionDetailRef> get institutions =>
       throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get averageRating => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toIntLenient)
   int get totalReviews => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toIntLenient)
   int get totalSessions => throw _privateConstructorUsedError;
   String? get educationLevel => throw _privateConstructorUsedError;
   int? get yearsOfExperience => throw _privateConstructorUsedError;
@@ -513,15 +516,15 @@ abstract class $TutorProfileCopyWith<$Res> {
   ) = _$TutorProfileCopyWithImpl<$Res, TutorProfile>;
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String name,
     String? bio,
     List<SubjectDetailRef> subjects,
     List<InstitutionDetailRef> institutions,
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double averageRating,
-    int totalReviews,
-    int totalSessions,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double averageRating,
+    @JsonKey(fromJson: toIntLenient) int totalReviews,
+    @JsonKey(fromJson: toIntLenient) int totalSessions,
     String? educationLevel,
     int? yearsOfExperience,
     List<String> teachingSpecializations,
@@ -662,15 +665,15 @@ abstract class _$$TutorProfileImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String name,
     String? bio,
     List<SubjectDetailRef> subjects,
     List<InstitutionDetailRef> institutions,
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double averageRating,
-    int totalReviews,
-    int totalSessions,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double averageRating,
+    @JsonKey(fromJson: toIntLenient) int totalReviews,
+    @JsonKey(fromJson: toIntLenient) int totalSessions,
     String? educationLevel,
     int? yearsOfExperience,
     List<String> teachingSpecializations,
@@ -803,15 +806,15 @@ class __$$TutorProfileImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TutorProfileImpl implements _TutorProfile {
   const _$TutorProfileImpl({
-    required this.id,
+    @JsonKey(fromJson: toIntLenient) required this.id,
     required this.name,
     this.bio,
     final List<SubjectDetailRef> subjects = const [],
     final List<InstitutionDetailRef> institutions = const [],
-    @JsonKey(fromJson: _toDouble) required this.hourlyRate,
-    @JsonKey(fromJson: _toDouble) required this.averageRating,
-    required this.totalReviews,
-    required this.totalSessions,
+    @JsonKey(fromJson: toDoubleLenient) required this.hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required this.averageRating,
+    @JsonKey(fromJson: toIntLenient) required this.totalReviews,
+    @JsonKey(fromJson: toIntLenient) required this.totalSessions,
     this.educationLevel,
     this.yearsOfExperience,
     final List<String> teachingSpecializations = const [],
@@ -827,6 +830,7 @@ class _$TutorProfileImpl implements _TutorProfile {
       _$$TutorProfileImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int id;
   @override
   final String name;
@@ -851,14 +855,16 @@ class _$TutorProfileImpl implements _TutorProfile {
   }
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double averageRating;
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int totalReviews;
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int totalSessions;
   @override
   final String? educationLevel;
@@ -964,15 +970,15 @@ class _$TutorProfileImpl implements _TutorProfile {
 
 abstract class _TutorProfile implements TutorProfile {
   const factory _TutorProfile({
-    required final int id,
+    @JsonKey(fromJson: toIntLenient) required final int id,
     required final String name,
     final String? bio,
     final List<SubjectDetailRef> subjects,
     final List<InstitutionDetailRef> institutions,
-    @JsonKey(fromJson: _toDouble) required final double hourlyRate,
-    @JsonKey(fromJson: _toDouble) required final double averageRating,
-    required final int totalReviews,
-    required final int totalSessions,
+    @JsonKey(fromJson: toDoubleLenient) required final double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required final double averageRating,
+    @JsonKey(fromJson: toIntLenient) required final int totalReviews,
+    @JsonKey(fromJson: toIntLenient) required final int totalSessions,
     final String? educationLevel,
     final int? yearsOfExperience,
     final List<String> teachingSpecializations,
@@ -986,6 +992,7 @@ abstract class _TutorProfile implements TutorProfile {
       _$TutorProfileImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get id;
   @override
   String get name;
@@ -996,14 +1003,16 @@ abstract class _TutorProfile implements TutorProfile {
   @override
   List<InstitutionDetailRef> get institutions;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get averageRating;
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get totalReviews;
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get totalSessions;
   @override
   String? get educationLevel;

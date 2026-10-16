@@ -24,7 +24,9 @@ mixin _$WalletTransaction {
   int get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get direction => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toDoubleLenient)
   double get amount => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toDoubleLenient)
   double get balanceAfter => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get reference => throw _privateConstructorUsedError;
@@ -51,8 +53,8 @@ abstract class $WalletTransactionCopyWith<$Res> {
     int id,
     String type,
     String direction,
-    double amount,
-    double balanceAfter,
+    @JsonKey(fromJson: toDoubleLenient) double amount,
+    @JsonKey(fromJson: toDoubleLenient) double balanceAfter,
     String? description,
     String? reference,
     DateTime createdAt,
@@ -144,8 +146,8 @@ abstract class _$$WalletTransactionImplCopyWith<$Res>
     int id,
     String type,
     String direction,
-    double amount,
-    double balanceAfter,
+    @JsonKey(fromJson: toDoubleLenient) double amount,
+    @JsonKey(fromJson: toDoubleLenient) double balanceAfter,
     String? description,
     String? reference,
     DateTime createdAt,
@@ -229,8 +231,8 @@ class _$WalletTransactionImpl implements _WalletTransaction {
     required this.id,
     required this.type,
     required this.direction,
-    required this.amount,
-    required this.balanceAfter,
+    @JsonKey(fromJson: toDoubleLenient) required this.amount,
+    @JsonKey(fromJson: toDoubleLenient) required this.balanceAfter,
     this.description,
     this.reference,
     required this.createdAt,
@@ -246,8 +248,10 @@ class _$WalletTransactionImpl implements _WalletTransaction {
   @override
   final String direction;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   final double amount;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   final double balanceAfter;
   @override
   final String? description;
@@ -317,8 +321,8 @@ abstract class _WalletTransaction implements WalletTransaction {
     required final int id,
     required final String type,
     required final String direction,
-    required final double amount,
-    required final double balanceAfter,
+    @JsonKey(fromJson: toDoubleLenient) required final double amount,
+    @JsonKey(fromJson: toDoubleLenient) required final double balanceAfter,
     final String? description,
     final String? reference,
     required final DateTime createdAt,
@@ -334,8 +338,10 @@ abstract class _WalletTransaction implements WalletTransaction {
   @override
   String get direction;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   double get amount;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   double get balanceAfter;
   @override
   String? get description;

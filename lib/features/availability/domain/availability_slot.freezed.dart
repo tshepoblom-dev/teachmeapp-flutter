@@ -22,6 +22,7 @@ AvailabilitySlot _$AvailabilitySlotFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AvailabilitySlot {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _clampDayOfWeek)
   int get dayOfWeek => throw _privateConstructorUsedError;
   String get startTime => throw _privateConstructorUsedError;
   String get endTime => throw _privateConstructorUsedError;
@@ -49,7 +50,7 @@ abstract class $AvailabilitySlotCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    int dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) int dayOfWeek,
     String startTime,
     String endTime,
     bool isRecurring,
@@ -142,7 +143,7 @@ abstract class _$$AvailabilitySlotImplCopyWith<$Res>
   @useResult
   $Res call({
     int id,
-    int dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) int dayOfWeek,
     String startTime,
     String endTime,
     bool isRecurring,
@@ -227,7 +228,7 @@ class __$$AvailabilitySlotImplCopyWithImpl<$Res>
 class _$AvailabilitySlotImpl implements _AvailabilitySlot {
   const _$AvailabilitySlotImpl({
     required this.id,
-    required this.dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) required this.dayOfWeek,
     required this.startTime,
     required this.endTime,
     required this.isRecurring,
@@ -242,6 +243,7 @@ class _$AvailabilitySlotImpl implements _AvailabilitySlot {
   @override
   final int id;
   @override
+  @JsonKey(fromJson: _clampDayOfWeek)
   final int dayOfWeek;
   @override
   final String startTime;
@@ -316,7 +318,7 @@ class _$AvailabilitySlotImpl implements _AvailabilitySlot {
 abstract class _AvailabilitySlot implements AvailabilitySlot {
   const factory _AvailabilitySlot({
     required final int id,
-    required final int dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) required final int dayOfWeek,
     required final String startTime,
     required final String endTime,
     required final bool isRecurring,
@@ -331,6 +333,7 @@ abstract class _AvailabilitySlot implements AvailabilitySlot {
   @override
   int get id;
   @override
+  @JsonKey(fromJson: _clampDayOfWeek)
   int get dayOfWeek;
   @override
   String get startTime;

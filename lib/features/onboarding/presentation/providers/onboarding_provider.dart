@@ -8,9 +8,9 @@ class OnboardingNotifier extends Notifier<bool> {
 
   void setSeen(bool value) => state = value;
 
-  void markSeen() {
+  Future<void> markSeen() async {
     state = true;
-    ref.read(preferencesServiceProvider).setHasSeenOnboarding(true);
+    await ref.read(preferencesServiceProvider).setHasSeenOnboarding(true);
   }
 }
 

@@ -37,9 +37,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
-  void _completeAndGo(String path) {
-    ref.read(onboardingProvider.notifier).markSeen();
-    context.go(path);
+  Future<void> _completeAndGo(String path) async {
+    await ref.read(onboardingProvider.notifier).markSeen();
+    if (mounted) context.go(path);
   }
 
   @override

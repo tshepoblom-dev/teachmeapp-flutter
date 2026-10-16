@@ -14,6 +14,7 @@ class RoutePaths {
   static const suspended = '/account/suspended';
   static const banned = '/account/banned';
   static const pendingKyc = '/account/pending-kyc';
+  static const kyc = '/account/kyc';
 
   static const studentHome = '/student';
   static const tutorHome = '/tutor';

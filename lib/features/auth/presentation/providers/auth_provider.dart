@@ -87,22 +87,34 @@ class AuthNotifier extends Notifier<AuthState> {
   /// exists in secure storage.
   Future<void> hydrateFromToken() async {
     state = const AuthState.authenticating();
-    try {
-      final user = await _repository.fetchCurrentUser();
-      state = AuthState.authenticated(user);
-      await ref.read(pushNotificationServiceProvider).initializeAndRegister();
-    } catch (error) {
-      if (error is ForbiddenException && error.code != null) {
-        state = AuthState.accountIssue(
-          _placeholderUser(),
-          error.code!,
-          error.message,
-        );
+    // A network error here doesn't mean the token is invalid — retry a
+    // couple of times with backoff before treating it like one, so a brief
+    // connectivity blip on app start doesn't log the user out.
+    const retryDelays = [Duration(seconds: 1), Duration(seconds: 2)];
+    for (var attempt = 0; ; attempt++) {
+      try {
+        final user = await _repository.fetchCurrentUser();
+        state = AuthState.authenticated(user);
+        await ref.read(pushNotificationServiceProvider).initializeAndRegister();
         return;
+      } catch (error) {
+        if (error is ForbiddenException && error.code != null) {
+          state = AuthState.accountIssue(
+            _placeholderUser(),
+            error.code!,
+            error.message,
+          );
+          return;
+        }
+        if (error is! NetworkException || attempt >= retryDelays.length) {
+          // Invalid/expired token or a definitive server error (or retries
+          // exhausted): fall back to a clean logged-out state rather than
+          // getting stuck retrying.
+          state = const AuthState.unauthenticated();
+          return;
+        }
+        await Future<void>.delayed(retryDelays[attempt]);
       }
-      // Invalid/expired token or unreachable server: fall back to a clean
-      // logged-out state rather than getting stuck on the splash screen.
-      state = const AuthState.unauthenticated();
     }
   }
 

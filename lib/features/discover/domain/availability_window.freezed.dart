@@ -21,6 +21,7 @@ AvailabilityWindow _$AvailabilityWindowFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AvailabilityWindow {
+  @JsonKey(fromJson: _clampDayOfWeek)
   int get dayOfWeek => throw _privateConstructorUsedError;
   String get startTime => throw _privateConstructorUsedError;
   String get endTime => throw _privateConstructorUsedError;
@@ -42,7 +43,11 @@ abstract class $AvailabilityWindowCopyWith<$Res> {
     $Res Function(AvailabilityWindow) then,
   ) = _$AvailabilityWindowCopyWithImpl<$Res, AvailabilityWindow>;
   @useResult
-  $Res call({int dayOfWeek, String startTime, String endTime});
+  $Res call({
+    @JsonKey(fromJson: _clampDayOfWeek) int dayOfWeek,
+    String startTime,
+    String endTime,
+  });
 }
 
 /// @nodoc
@@ -96,7 +101,11 @@ abstract class _$$AvailabilityWindowImplCopyWith<$Res>
   ) = __$$AvailabilityWindowImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int dayOfWeek, String startTime, String endTime});
+  $Res call({
+    @JsonKey(fromJson: _clampDayOfWeek) int dayOfWeek,
+    String startTime,
+    String endTime,
+  });
 }
 
 /// @nodoc
@@ -143,7 +152,7 @@ class __$$AvailabilityWindowImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AvailabilityWindowImpl implements _AvailabilityWindow {
   const _$AvailabilityWindowImpl({
-    required this.dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) required this.dayOfWeek,
     required this.startTime,
     required this.endTime,
   });
@@ -152,6 +161,7 @@ class _$AvailabilityWindowImpl implements _AvailabilityWindow {
       _$$AvailabilityWindowImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: _clampDayOfWeek)
   final int dayOfWeek;
   @override
   final String startTime;
@@ -198,7 +208,7 @@ class _$AvailabilityWindowImpl implements _AvailabilityWindow {
 
 abstract class _AvailabilityWindow implements AvailabilityWindow {
   const factory _AvailabilityWindow({
-    required final int dayOfWeek,
+    @JsonKey(fromJson: _clampDayOfWeek) required final int dayOfWeek,
     required final String startTime,
     required final String endTime,
   }) = _$AvailabilityWindowImpl;
@@ -207,6 +217,7 @@ abstract class _AvailabilityWindow implements AvailabilityWindow {
       _$AvailabilityWindowImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: _clampDayOfWeek)
   int get dayOfWeek;
   @override
   String get startTime;

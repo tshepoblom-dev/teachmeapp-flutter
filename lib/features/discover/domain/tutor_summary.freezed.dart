@@ -415,15 +415,17 @@ TutorSummary _$TutorSummaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TutorSummary {
+  @JsonKey(fromJson: toIntLenient)
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   List<SubjectRef> get subjects => throw _privateConstructorUsedError;
   List<InstitutionRef> get institutions => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get averageRating => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toIntLenient)
   int get totalReviews => throw _privateConstructorUsedError;
   String? get tier => throw _privateConstructorUsedError;
   String? get tierColour => throw _privateConstructorUsedError;
@@ -447,14 +449,14 @@ abstract class $TutorSummaryCopyWith<$Res> {
   ) = _$TutorSummaryCopyWithImpl<$Res, TutorSummary>;
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String name,
     String? bio,
     List<SubjectRef> subjects,
     List<InstitutionRef> institutions,
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double averageRating,
-    int totalReviews,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double averageRating,
+    @JsonKey(fromJson: toIntLenient) int totalReviews,
     String? tier,
     String? tierColour,
     String? avatarUrl,
@@ -561,14 +563,14 @@ abstract class _$$TutorSummaryImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    int id,
+    @JsonKey(fromJson: toIntLenient) int id,
     String name,
     String? bio,
     List<SubjectRef> subjects,
     List<InstitutionRef> institutions,
-    @JsonKey(fromJson: _toDouble) double hourlyRate,
-    @JsonKey(fromJson: _toDouble) double averageRating,
-    int totalReviews,
+    @JsonKey(fromJson: toDoubleLenient) double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) double averageRating,
+    @JsonKey(fromJson: toIntLenient) int totalReviews,
     String? tier,
     String? tierColour,
     String? avatarUrl,
@@ -667,14 +669,14 @@ class __$$TutorSummaryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TutorSummaryImpl implements _TutorSummary {
   const _$TutorSummaryImpl({
-    required this.id,
+    @JsonKey(fromJson: toIntLenient) required this.id,
     required this.name,
     this.bio,
     final List<SubjectRef> subjects = const [],
     final List<InstitutionRef> institutions = const [],
-    @JsonKey(fromJson: _toDouble) required this.hourlyRate,
-    @JsonKey(fromJson: _toDouble) required this.averageRating,
-    required this.totalReviews,
+    @JsonKey(fromJson: toDoubleLenient) required this.hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required this.averageRating,
+    @JsonKey(fromJson: toIntLenient) required this.totalReviews,
     this.tier,
     this.tierColour,
     this.avatarUrl,
@@ -685,6 +687,7 @@ class _$TutorSummaryImpl implements _TutorSummary {
       _$$TutorSummaryImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int id;
   @override
   final String name;
@@ -709,12 +712,13 @@ class _$TutorSummaryImpl implements _TutorSummary {
   }
 
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   final double averageRating;
   @override
+  @JsonKey(fromJson: toIntLenient)
   final int totalReviews;
   @override
   final String? tier;
@@ -787,14 +791,14 @@ class _$TutorSummaryImpl implements _TutorSummary {
 
 abstract class _TutorSummary implements TutorSummary {
   const factory _TutorSummary({
-    required final int id,
+    @JsonKey(fromJson: toIntLenient) required final int id,
     required final String name,
     final String? bio,
     final List<SubjectRef> subjects,
     final List<InstitutionRef> institutions,
-    @JsonKey(fromJson: _toDouble) required final double hourlyRate,
-    @JsonKey(fromJson: _toDouble) required final double averageRating,
-    required final int totalReviews,
+    @JsonKey(fromJson: toDoubleLenient) required final double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required final double averageRating,
+    @JsonKey(fromJson: toIntLenient) required final int totalReviews,
     final String? tier,
     final String? tierColour,
     final String? avatarUrl,
@@ -804,6 +808,7 @@ abstract class _TutorSummary implements TutorSummary {
       _$TutorSummaryImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get id;
   @override
   String get name;
@@ -814,12 +819,13 @@ abstract class _TutorSummary implements TutorSummary {
   @override
   List<InstitutionRef> get institutions;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get hourlyRate;
   @override
-  @JsonKey(fromJson: _toDouble)
+  @JsonKey(fromJson: toDoubleLenient)
   double get averageRating;
   @override
+  @JsonKey(fromJson: toIntLenient)
   int get totalReviews;
   @override
   String? get tier;

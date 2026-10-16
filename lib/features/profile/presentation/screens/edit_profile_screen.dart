@@ -54,7 +54,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       });
       if (mounted) Navigator.of(context).pop();
     } catch (error) {
-      setState(() => _error = Failure.fromError(error).message);
+      if (mounted) setState(() => _error = Failure.fromError(error).message);
     } finally {
       if (mounted) setState(() => _isSaving = false);
     }

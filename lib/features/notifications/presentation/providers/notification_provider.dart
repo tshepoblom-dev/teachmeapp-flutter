@@ -27,6 +27,8 @@ class NotificationListResult {
 }
 
 class NotificationListNotifier extends AsyncNotifier<NotificationListResult> {
+  bool _isLoadingMore = false;
+
   @override
   Future<NotificationListResult> build() async {
     final page = await ref.read(notificationRepositoryProvider).fetchNotifications();
@@ -38,18 +40,24 @@ class NotificationListNotifier extends AsyncNotifier<NotificationListResult> {
   }
 
   Future<void> loadMore() async {
+    if (_isLoadingMore) return;
     final current = state.valueOrNull;
     if (current == null || !current.hasMore) return;
 
-    final next = await ref
-        .read(notificationRepositoryProvider)
-        .fetchNotifications(page: current.page + 1);
+    _isLoadingMore = true;
+    try {
+      final next = await ref
+          .read(notificationRepositoryProvider)
+          .fetchNotifications(page: current.page + 1);
 
-    state = AsyncValue.data(NotificationListResult(
-      notifications: [...current.notifications, ...next.data],
-      hasMore: next.hasMore,
-      page: next.currentPage,
-    ));
+      state = AsyncValue.data(NotificationListResult(
+        notifications: [...current.notifications, ...next.data],
+        hasMore: next.hasMore,
+        page: next.currentPage,
+      ));
+    } finally {
+      _isLoadingMore = false;
+    }
   }
 
   Future<void> markRead(String id) async {

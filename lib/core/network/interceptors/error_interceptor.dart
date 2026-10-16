@@ -1,6 +1,19 @@
 import 'package:dio/dio.dart';
 
+import '../api_endpoints.dart';
 import '../api_exception.dart';
+
+/// 401s from these endpoints mean "bad credentials"/"invalid token in this
+/// request only", not "the current session is invalid" — forcing a global
+/// logout for them would be wrong (there's no session to force out of) and
+/// wastes a token-clear/push-clear/realtime-disconnect on every failed
+/// login attempt.
+const _publicAuthPaths = {
+  ApiEndpoints.authLogin,
+  ApiEndpoints.authRegister,
+  ApiEndpoints.authForgotPassword,
+  ApiEndpoints.authResetPassword,
+};
 
 /// Maps every [DioException] into a typed [AppException] (attached back onto
 /// `DioException.error`) so repositories can pattern-match instead of
@@ -37,7 +50,9 @@ class ErrorInterceptor extends Interceptor {
 
     switch (response.statusCode) {
       case 401:
-        onUnauthenticated();
+        if (!_publicAuthPaths.contains(err.requestOptions.path)) {
+          onUnauthenticated();
+        }
         return AppException.unauthenticated(
           json['message'] as String? ?? 'Your session has expired. Please log in again.',
         );

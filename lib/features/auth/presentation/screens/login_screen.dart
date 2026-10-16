@@ -42,7 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       // Router's redirect picks up the new AuthState and lands on the
       // correct role home / account-status interstitial automatically.
     } catch (error) {
-      setState(() => _failure = Failure.fromError(error));
+      if (mounted) setState(() => _failure = Failure.fromError(error));
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }

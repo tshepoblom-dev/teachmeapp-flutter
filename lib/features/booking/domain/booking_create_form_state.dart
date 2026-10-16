@@ -16,6 +16,7 @@ class BookingCreateFormState with _$BookingCreateFormState {
     @Default('') String description,
     DateTime? scheduledAt,
     @Default(60) int durationMinutes,
+    int? paymentMethodId,
     @Default(false) bool isSubmitting,
     Map<String, List<String>>? fieldErrors,
   }) = _BookingCreateFormState;

@@ -6,33 +6,32 @@ part of 'profile.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
-    _$ProfileImpl(
-      bio: json['bio'] as String?,
-      phoneNumber: json['phone_number'] as String?,
-      timezone: json['timezone'] as String?,
-      languagePreference: json['language_preference'] as String?,
-      kycStatus: json['kyc_status'] as String?,
-      idVerified: json['id_verified'] as bool? ?? false,
-      isAvailable: json['is_available'] as bool? ?? false,
-      subjects:
-          (json['subjects'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      hourlyRate: _toDoubleOrNull(json['hourly_rate']),
-      averageRating: _toDoubleOrNull(json['average_rating']),
-      totalReviews: _toIntOrNull(json['total_reviews']),
-      totalSessionsHosted: _toIntOrNull(json['total_sessions_hosted']),
-      totalSessionsAttended: _toIntOrNull(json['total_sessions_attended']),
-      teachingSpecializations:
-          (json['teaching_specializations'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      educationLevel: json['education_level'] as String?,
-      yearsOfExperience: _toIntOrNull(json['years_of_experience']),
-      tier: json['tier'] as String?,
-      tierColour: json['tier_colour'] as String?,
-    );
+_$ProfileImpl _$$ProfileImplFromJson(
+  Map<String, dynamic> json,
+) => _$ProfileImpl(
+  bio: json['bio'] as String?,
+  phoneNumber: json['phone_number'] as String?,
+  timezone: json['timezone'] as String?,
+  languagePreference: json['language_preference'] as String?,
+  kycStatus: json['kyc_status'] as String?,
+  idVerified: json['id_verified'] as bool? ?? false,
+  isAvailable: json['is_available'] as bool? ?? false,
+  subjects:
+      (json['subjects'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  hourlyRate: toDoubleOrNullLenient(json['hourly_rate']),
+  averageRating: toDoubleOrNullLenient(json['average_rating']),
+  totalReviews: toIntOrNullLenient(json['total_reviews']),
+  totalSessionsHosted: toIntOrNullLenient(json['total_sessions_hosted']),
+  totalSessionsAttended: toIntOrNullLenient(json['total_sessions_attended']),
+  teachingSpecializations:
+      (json['teaching_specializations'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+  educationLevel: json['education_level'] as String?,
+  yearsOfExperience: toIntOrNullLenient(json['years_of_experience']),
+  tier: json['tier'] as String?,
+  tierColour: json['tier_colour'] as String?,
+);
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
     <String, dynamic>{
@@ -58,8 +57,8 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
 
 _$UserWalletImpl _$$UserWalletImplFromJson(Map<String, dynamic> json) =>
     _$UserWalletImpl(
-      balance: _toDouble(json['balance']),
-      escrowBalance: _toDouble(json['escrow_balance']),
+      balance: toDoubleLenient(json['balance']),
+      escrowBalance: toDoubleLenient(json['escrow_balance']),
       currency: json['currency'] as String,
     );
 

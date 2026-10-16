@@ -8,13 +8,13 @@ part of 'kyc_status.dart';
 
 _$KycApplicationImpl _$$KycApplicationImplFromJson(Map<String, dynamic> json) =>
     _$KycApplicationImpl(
-      id: (json['id'] as num).toInt(),
+      id: toIntLenient(json['id']),
       applicationType: json['application_type'] as String,
       status: json['status'] as String,
       submittedAt: json['submitted_at'] as String?,
       reviewedAt: json['reviewed_at'] as String?,
       rejectionReason: json['rejection_reason'] as String?,
-      resubmissionCount: (json['resubmission_count'] as num?)?.toInt(),
+      resubmissionCount: toIntOrNullLenient(json['resubmission_count']),
       documents:
           (json['documents'] as List<dynamic>?)
               ?.map((e) => KycDocument.fromJson(e as Map<String, dynamic>))

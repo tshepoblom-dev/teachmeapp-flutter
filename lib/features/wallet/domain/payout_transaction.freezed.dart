@@ -22,6 +22,7 @@ PayoutTransaction _$PayoutTransactionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PayoutTransaction {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: toDoubleLenient)
   double get amount => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get reference => throw _privateConstructorUsedError;
@@ -49,7 +50,7 @@ abstract class $PayoutTransactionCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    double amount,
+    @JsonKey(fromJson: toDoubleLenient) double amount,
     String status,
     String reference,
     String? failureReason,
@@ -142,7 +143,7 @@ abstract class _$$PayoutTransactionImplCopyWith<$Res>
   @useResult
   $Res call({
     int id,
-    double amount,
+    @JsonKey(fromJson: toDoubleLenient) double amount,
     String status,
     String reference,
     String? failureReason,
@@ -227,7 +228,7 @@ class __$$PayoutTransactionImplCopyWithImpl<$Res>
 class _$PayoutTransactionImpl implements _PayoutTransaction {
   const _$PayoutTransactionImpl({
     required this.id,
-    required this.amount,
+    @JsonKey(fromJson: toDoubleLenient) required this.amount,
     required this.status,
     required this.reference,
     this.failureReason,
@@ -242,6 +243,7 @@ class _$PayoutTransactionImpl implements _PayoutTransaction {
   @override
   final int id;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   final double amount;
   @override
   final String status;
@@ -314,7 +316,7 @@ class _$PayoutTransactionImpl implements _PayoutTransaction {
 abstract class _PayoutTransaction implements PayoutTransaction {
   const factory _PayoutTransaction({
     required final int id,
-    required final double amount,
+    @JsonKey(fromJson: toDoubleLenient) required final double amount,
     required final String status,
     required final String reference,
     final String? failureReason,
@@ -329,6 +331,7 @@ abstract class _PayoutTransaction implements PayoutTransaction {
   @override
   int get id;
   @override
+  @JsonKey(fromJson: toDoubleLenient)
   double get amount;
   @override
   String get status;

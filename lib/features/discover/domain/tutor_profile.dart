@@ -1,12 +1,11 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/utils/json_converters.dart';
 import 'availability_window.dart';
 
 part 'tutor_profile.freezed.dart';
 part 'tutor_profile.g.dart';
-
-double _toDouble(dynamic value) => (value as num).toDouble();
 
 @freezed
 class SubjectDetailRef with _$SubjectDetailRef {
@@ -38,15 +37,15 @@ class InstitutionDetailRef with _$InstitutionDetailRef {
 @freezed
 class TutorProfile with _$TutorProfile {
   const factory TutorProfile({
-    required int id,
+    @JsonKey(fromJson: toIntLenient) required int id,
     required String name,
     String? bio,
     @Default([]) List<SubjectDetailRef> subjects,
     @Default([]) List<InstitutionDetailRef> institutions,
-    @JsonKey(fromJson: _toDouble) required double hourlyRate,
-    @JsonKey(fromJson: _toDouble) required double averageRating,
-    required int totalReviews,
-    required int totalSessions,
+    @JsonKey(fromJson: toDoubleLenient) required double hourlyRate,
+    @JsonKey(fromJson: toDoubleLenient) required double averageRating,
+    @JsonKey(fromJson: toIntLenient) required int totalReviews,
+    @JsonKey(fromJson: toIntLenient) required int totalSessions,
     String? educationLevel,
     int? yearsOfExperience,
     @Default([]) List<String> teachingSpecializations,
